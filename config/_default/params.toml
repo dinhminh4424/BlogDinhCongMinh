@@ -1,0 +1,109 @@
+# ==============================================
+# ⚙️ CẤU HÌNH CHUNG CHO HUGO + THEME BLOWFISH
+# ==============================================
+
+# ----------------------------
+# Thông tin cơ bản của site
+# ----------------------------
+baseURL = "http://localhost:1313/"     # Địa chỉ web, khi deploy lên host thì đổi (VD: https://tenmien.com/)
+languageCode = "vi"                    # Ngôn ngữ mặc định cho website
+title = "Blog của Đinh Công Minh"      # Tiêu đề website (hiện trên tab trình duyệt và header)
+theme = "blowfish"                     # Tên theme sử dụng (ở đây là Blowfish)
+defaultContentLanguage = "vi"          # Ngôn ngữ nội dung mặc định
+hasCJKLanguage = true                  # Bật để hỗ trợ tiếng Việt (CJK = Chinese, Japanese, Korean)
+
+# ----------------------------
+# Cấu hình phân trang
+# ----------------------------
+[pagination]
+  pagerSize = 10                       # Số bài viết hiển thị mỗi trang (trước đây dùng paginate, nay đổi thành pagerSize)
+
+# ----------------------------
+# Thông tin tác giả
+# ----------------------------
+[author]
+  name = "Đinh Công Minh"              # Tên tác giả (hiện trong bài viết)
+  headline = "Chia sẻ kiến thức & kinh nghiệm"  # Tiêu đề ngắn gọn mô tả tác giả
+  bio = "Một lập trình viên thích công nghệ và viết lách."  # Tiểu sử tác giả
+  #image = "/images/AvatarAuthor.jpg"               # Avatar của tác giả (đặt file vào /static/avatar.png)
+
+# ----------------------------
+# Thông số hiển thị chính
+# ----------------------------
+[params]
+  # SEO cơ bản
+  description = "Một blog nhanh, sạch, responsive với theme Blowfish"  # Mô tả ngắn cho SEO
+  keywords = ["blog", "hugo", "blowfish"]                              # Từ khóa SEO
+
+  # Ngày tháng
+  dateFormat = "2 January 2006"             # Định dạng ngày (Blowfish tự hỗ trợ tiếng Việt)
+
+  # Giao diện
+  defaultAppearance = "auto"                # Giao diện mặc định: "light", "dark", hoặc "auto" (tự theo OS)
+  autoSwitchAppearance = true               # Tự đổi giao diện theo hệ điều hành
+  disableThemeToggle = false                # Nếu true thì ẩn nút đổi giao diện (light/dark)
+
+  # Hiển thị bài viết
+  showReadingTime = true                    # Hiển thị thời gian đọc ước tính
+  showWordCount = true                      # Hiển thị số từ trong bài viết
+  showBreadcrumbs = true                    # Hiển thị đường dẫn breadcrumb
+  showPostNavLinks = true                   # Hiển thị liên kết tới bài trước/sau
+  showCodeCopyButtons = true                # Hiển thị nút copy trong khối code
+  showRSSButtonInSectionTermList = true     # Hiển thị nút RSS trong danh mục/tag
+  enableInlineShortcodes = true             # Cho phép nhúng shortcode trong nội dung
+  enableTaxonomyList = true                 # Hiển thị danh sách tags và categories
+  hideMeta = false                          # Nếu true thì ẩn metadata (tags, description, ngày đăng)
+  showFeaturedImage = true
+
+  # UI/UX (trải nghiệm người dùng)
+  disableScrollToTop = false                # Nút cuộn lên đầu trang
+  disableReadingProgressBar = false         # Thanh tiến độ khi đọc bài
+  enableSearch = true                       # Bật ô tìm kiếm (dùng Fuse.js)
+  disableSpecial1stPost = false             # Có hiển thị bài nổi bật đầu tiên không
+  disableMenuShowcase = false               # Có dùng menu showcase không
+
+  # ----------------------------
+  # Cấu hình hiển thị trong bài viết
+  # ----------------------------
+  [params.article]
+    showTaxonomies = true                   # Hiển thị tags & categories trong bài
+    showCategoryOnly = false                # Nếu true thì chỉ hiển thị category
+    showDate = true                         # Hiển thị ngày đăng bài
+    showDateUpdated = true                  # Hiển thị ngày cập nhật bài
+    showAuthor = true                       # Hiển thị tác giả
+    showBreadcrumbs = true                  # Hiển thị breadcrumb trong bài
+    showHeadingAnchors = true               # Hiển thị anchor (#) cạnh heading
+    showReadingTime = true                  # Hiển thị thời gian đọc
+    showTableOfContents = true              # Hiển thị mục lục (TOC)
+    showWordCount = true                    # Hiển thị số từ
+    sharingLinks = ["linkedin", "twitter", "facebook", "pinterest", "reddit", "email"] # Nút chia sẻ MXH
+    showFeatureImage = true
+    showFeatureImageInList = true
+
+  # ----------------------------
+  # Bình luận
+  # ----------------------------
+  [params.comments]
+    enable = true                           # Bật tính năng bình luận
+    provider = "utterances"                 # Loại: "disqus", "utterances", "giscus"
+    disqusShortname = ""                    # Nếu dùng Disqus thì nhập shortname
+    utterancesRepo = "username/repo"        # Nếu dùng Utterances (repo GitHub)
+
+  # ----------------------------
+  # Tìm kiếm
+  # ----------------------------
+  [params.search]
+    enable = true                           # Bật tính năng tìm kiếm
+    type = "auto"                           # "auto" = dùng Fuse.js (client-side search)
+
+
+  [params.list]
+    showCards = true              # Bật chế độ card view
+    cardView = true               # Card view mặc định
+    cardViewScreenWidth = true    # Card trải dài theo màn hình lớn
+    showSummary = true            # Hiển thị summary (tóm tắt) trên card
+    showHero = false              # Không cần hero ở list page (tùy chọn)
+    groupByYear = false           # Có nhóm bài theo năm không
+    orderByWeight = false         # Có sắp xếp theo weight không
+    showTableOfContents = false   # Ẩn TOC trong list page
+    constrainItemsWidth = false   # Card có thể full width

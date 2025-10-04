@@ -1,0 +1,34 @@
+# Định nghĩa ngôn ngữ
+[languages]
+  [languages.vi]
+    languageCode = "vi"
+    languageName = "Tiếng Việt"
+    weight = 1
+    title = "Blog Tuyệt Vời Của Tôi"
+
+    # Params riêng cho ngôn ngữ này
+    [languages.vi.params]
+      displayName = "VI"
+      isoCode = "vi"
+      rtl = false
+      dateFormat = "2 Tháng 1, 2006"
+      description = "Chào mừng đến với blog của tôi được xây dựng bằng Hugo và Blowfish."
+      copyright = "© {year}. Bản quyền thuộc về tôi."
+
+      [languages.vi.params.author]
+        name = "Tên Của Bạn"
+        email = "email.cua.ban@example.com"
+        headline = "Một blogger đam mê"
+        bio = "Đây là tiểu sử của tôi."
+
+        [[languages.vi.params.author.links]]
+          id = "github"
+          name = "GitHub"
+          url = "https://github.com/yourusername"
+          icon = "github.svg"
+
+        [[languages.vi.params.author.links]]
+          id = "twitter"
+          name = "Twitter"
+          url = "https://twitter.com/yourusername"
+          icon = "twitter.svg"

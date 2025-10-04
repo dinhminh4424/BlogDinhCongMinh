@@ -1,0 +1,8 @@
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false

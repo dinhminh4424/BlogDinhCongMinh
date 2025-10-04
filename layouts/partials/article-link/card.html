@@ -1,0 +1,64 @@
+<div class="group-hover-card group relative overflow-hidden rounded-xl border border-2 border-neutral-200 shadow-2xl dark:border-neutral-700">
+
+  {{/* ===== Featured Image ===== */}}
+  {{ $imgName := .Params.featuredImagePreview | default .Params.featuredImage }}
+  {{ if $imgName }}
+    {{ with .Resources.GetMatch $imgName }}
+    <a href="{{ $.Permalink }}">
+      <div class="w-full h-48 rounded-t-xl bg-center bg-cover"
+           style="background-image:url('{{ .RelPermalink }}'); background-size: cover; background-position: center;">
+      </div>
+    </a>
+  {{ else }}
+    <a href="{{ $.Permalink }}">
+      <div class="w-full h-48 rounded-t-xl bg-center bg-cover"
+           style="background-image:url('{{ $imgName | relURL }}'); background-size: cover; background-position: center;">
+      </div>
+    </a>
+  {{ end }}
+  {{ end }}
+
+  {{/* ===== Draft Badge ===== */}}
+  {{ if and .Draft .Site.Params.article.showDraftLabel }}
+    <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">
+      Draft
+    </span>
+  {{ end }}
+
+  <div class="px-6 py-4">
+
+    {{/* ===== Title ===== */}}
+    <h2 class="text-xl font-bold mb-2">
+      <a href="{{ .Permalink }}" class="hover:underline text-neutral-900 dark:text-neutral-100">
+        {{ .Title | emojify }}
+      </a>
+    </h2>
+
+    {{/* ===== Metadata ===== */}}
+    <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+      {{ partial "article-meta/basic.html" . }}
+    </div>
+
+    {{/* ===== Summary ===== */}}
+    {{ if or .Params.showSummary (.Site.Params.list.showSummary) }}
+      <p class="text-neutral-700 dark:text-neutral-300 line-clamp-3 mb-2">
+        {{ .Summary | plainify }}
+      </p>
+    {{ end }}
+
+    {{/* ===== Tags ===== */}}
+    {{ with .Params.tags }}
+      <div class="flex flex-wrap gap-2 mt-2 text-sm">
+        {{ range . }}
+          <span class="inline-block">
+            <a href="{{ "tags/" | relURL }}{{ . | urlize }}"
+               class="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700">
+              #{{ . }}
+            </a>
+          </span>
+        {{ end }}
+      </div>
+    {{ end }}
+
+  </div>
+</div>

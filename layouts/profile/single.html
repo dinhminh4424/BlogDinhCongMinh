@@ -1,0 +1,76 @@
+{{ define "main" }}
+  {{ .Scratch.Set "scope" "single" }}
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center py-4">
+    <article class="max-w-3xl w-full px-4 sm:px-6 mx-auto">
+      {{/* Header with Avatar */}}
+      <header class="mt-5 text-center">
+        {{ if .Params.avatar }}
+          <div class="relative inline-block">
+            <img
+              src="/profile/{{ .Params.avatar }}"
+              alt="Ảnh đại diện {{ .Title }}"
+              class="w-24 h-24 mx-auto rounded-full border-2 border-gray-200"
+            />
+            <div
+              class="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+            >
+              Available
+            </div>
+          </div>
+        {{ end }}
+        <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+          {{ .Title | emojify }}
+        </h1>
+        <p class="mt-1 text-md sm:text-lg text-gray-600">
+          {{ with .Params.jobtitle }}{{ . }}{{ else }}Chưa có chức danh{{ end }}
+        </p>
+        <div class="flex justify-center mt-2">
+          
+        </div>
+        {{ if .Params.showBreadcrumbs | default (site.Params.article.showBreadcrumbs | default false) }}
+          {{ partial "breadcrumbs.html" . }}
+        {{ end }}
+        
+      </header>
+
+      {{/* Body */}}
+      <section class="mt-0 prose dark:prose-invert mx-auto">
+        <div class="article-content mb-20">
+          {{ .Content }}
+          {{ $defaultReplyByEmail := site.Params.replyByEmail }}
+          {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
+          {{ if $replyByEmail }}
+            <strong class="block mt-8 text-center">
+              <a
+                target="_blank"
+                class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+                href="mailto:{{ site.Params.Author.email }}?subject={{ replace (printf "Reply to %s" .Title) "\"" "'" }}">
+                Reply by Email
+              </a>
+            </strong>
+          {{ end }}
+        </div>
+        {{ partial "series/series-closed.html" . }}
+        {{ partial "sharing-links.html" . }}
+        {{ partial "related.html" . }}
+      </section>
+
+      {{/* Footer */}}
+      <footer class="pt-8 text-center print:hidden">
+        {{ partial "article-pagination.html" . }}
+        {{ if .Params.showComments | default (site.Params.article.showComments | default false) }}
+          {{ if templates.Exists "partials/comments.html" }}
+            <div class="pt-3">
+              <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+              <div class="pt-3">
+                {{ partial "comments.html" . }}
+              </div>
+            </div>
+          {{ else }}
+            {{ warnf "[BLOWFISH] Comments are enabled for %s but no comments partial exists." .File.Path }}
+          {{ end }}
+        {{ end }}
+      </footer>
+    </article>
+  </div>
+{{ end }}

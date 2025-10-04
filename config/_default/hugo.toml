@@ -1,0 +1,89 @@
+baseURL = "http://localhost:1313/"   # Dùng URL cục bộ để kiểm tra
+    title = "DinhCongMinh_1916 2242"
+    theme = "blowfish"
+    defaultContentLanguage = "vi"
+
+    enableRobotsTXT = true
+    buildDrafts = false
+    buildFuture = false
+    buildExpired = false
+
+    [params]
+      customCss = ["css/custom.css"]
+      customJs = ["js/custom.js"]
+
+    # ⚡️ KHÔNG dùng paginate nữa
+    [pagination]
+      pagerSize = 6   # Số bài viết mỗi trang
+
+    [outputs]
+      home = ["HTML", "RSS", "JSON"]  # JSON dùng cho search client-side
+
+    [taxonomies]
+      category = "categories"
+      tag = "tags"
+
+    [languages]
+      [languages.en]
+        languageCode = "en"
+        languageName = "English"
+        weight = 1
+
+      [languages.vi]
+        languageCode = "vi"
+        languageName = "Tiếng Việt"
+        weight = 2
+
+      # ----------------------------
+      # Menu điều hướng
+      # ----------------------------
+      [menu]
+        [[menu.main]]
+          identifier = "home"
+          name = "Trang Chủ"
+          url = "/"
+          weight = 1
+
+        [[menu.main]]
+          identifier = "posts"
+          name = "Bài Viết"
+          url = "/posts/"
+          weight = 2
+
+        [[menu.main]]
+          identifier = "categories"
+          name = "Danh Mục"
+          url = "/categories/"
+          weight = 3
+
+        [[menu.main]]
+          identifier = "tags"
+          name = "Thẻ"
+          url = "/tags/"
+          weight = 4
+
+        [[menu.main]]
+          identifier = "search"
+          name = "Tìm Kiếm"
+          url = "/search/"
+          weight = 5
+        
+        [[menu.main]]
+          identifier = "profile"
+          name = "Profile"
+          url = "/profile/"
+          weight = 6  # Đặt sau các mục khác
+
+        [[menu.main]]
+          identifier = "profile-thongtin"
+          name = "Thông Tin"
+          url = "/profile/thong-tin/"
+          parent = "profile"
+          weight = 1  # Sub-menu thứ tự 1
+
+        [[menu.main]]
+          identifier = "profile-cv"
+          name = "CV"
+          url = "/profile/cv/"
+          parent = "profile"
+          weight = 2  # Sub-menu thứ tự 2

@@ -4,15 +4,6 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,16 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
-          fetch-depth: 0
+          submodules: recursive  # Quan trọng: kéo luôn theme Hugo nếu có
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.139.0"   # bản mới nhất
-          extended: true
+          hugo-version: 'latest'
 
-      - name: Build
+      - name: Build site
         run: hugo --minify
 
       - name: Upload artifact
@@ -40,6 +29,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

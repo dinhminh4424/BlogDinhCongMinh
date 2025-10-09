@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kiểu Dữ Liệu on DinhCongMinh_1916 2242</title><link>http://localhost:1313/tags/ki%E1%BB%83u-d%E1%BB%AF-li%E1%BB%87u/</link><description>Recent content in Kiểu Dữ Liệu on DinhCongMinh_1916 2242</description><generator>Hugo -- gohugo.io</generator><language>vi</language><copyright>© 2025 Đinh Công Minh</copyright><lastBuildDate>Sun, 21 Sep 2025 10:16:00 +0700</lastBuildDate><atom:link href="http://localhost:1313/tags/ki%E1%BB%83u-d%E1%BB%AF-li%E1%BB%87u/index.xml" rel="self" type="application/rss+xml"/><item><title>Kiểu Dữ Liệu trong JavaScript</title><link>http://localhost:1313/posts/kieu-du-lieu-cua/</link><pubDate>Sun, 21 Sep 2025 10:16:00 +0700</pubDate><guid>http://localhost:1313/posts/kieu-du-lieu-cua/</guid><description>&lt;h1 class="relative group"&gt;Kiểu Dữ Liệu trong JavaScript
+&lt;div id="kiểu-dữ-liệu-trong-javascript" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u-trong-javascript" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;h2 class="relative group"&gt;A. Kiểu Dữ Liệu
+&lt;div id="a-kiểu-dữ-liệu" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#a-ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_c217e747437fb66f.jpg 330w,
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_16169d75ab6cfe11.jpg 660w,
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_b54aab2547879bb1.jpg 1280w
+"
+data-zoom-src="http://localhost:1313/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg"
+src="http://localhost:1313/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Trong JavaScript, có 6 kiểu dữ liệu cơ bản:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Number&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boolean&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;String&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Null&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undefined&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mặc dù JavaScript là ngôn ngữ weak type (kiểu yếu), không có nghĩa là nó không có khái niệm kiểu dữ liệu. JavaScript không yêu cầu chỉ định rõ ràng kiểu dữ liệu và có khả năng ép kiểu linh hoạt.&lt;/p&gt;</description></item></channel></rss>

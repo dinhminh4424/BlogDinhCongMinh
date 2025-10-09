@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cơ Bản on DinhCongMinh_1916 2242</title><link>http://localhost:1313/tags/c%C6%A1-b%E1%BA%A3n/</link><description>Recent content in Cơ Bản on DinhCongMinh_1916 2242</description><generator>Hugo -- gohugo.io</generator><language>vi</language><copyright>© 2025 Đinh Công Minh</copyright><lastBuildDate>Sun, 21 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/c%C6%A1-b%E1%BA%A3n/index.xml" rel="self" type="application/rss+xml"/><item><title>Giới thiệu về JavaScript</title><link>http://localhost:1313/posts/gioi-thieu-ve-javascript/</link><pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/gioi-thieu-ve-javascript/</guid><description>&lt;h2 class="relative group"&gt;JavaScript là gì?
+&lt;div id="javascript-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#javascript-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;JavaScript (JS) là một ngôn ngữ lập trình phổ biến, chủ yếu được sử dụng để tạo các trang web tương tác. Nó chạy trên trình duyệt và cho phép thêm động lực cho HTML và CSS.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Đặc điểm chính
+&lt;div id="đặc-điểm-chính" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%c4%91%e1%ba%b7c-%c4%91i%e1%bb%83m-ch%c3%adnh" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client-side&lt;/strong&gt;: Chạy trên trình duyệt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic&lt;/strong&gt;: Cập nhật nội dung theo thời gian thực.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Hỗ trợ nhiều nền tảng.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="relative group"&gt;Ví dụ cơ bản
+&lt;div id="ví-dụ-cơ-bản" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#v%c3%ad-d%e1%bb%a5-c%c6%a1-b%e1%ba%a3n" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Hello, JavaScript!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item></channel></rss>

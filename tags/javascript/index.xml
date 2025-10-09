@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on DinhCongMinh_1916 2242</title><link>http://localhost:1313/tags/javascript/</link><description>Recent content in Javascript on DinhCongMinh_1916 2242</description><generator>Hugo -- gohugo.io</generator><language>vi</language><copyright>© 2025 Đinh Công Minh</copyright><lastBuildDate>Thu, 25 Sep 2025 21:01:12 +0700</lastBuildDate><atom:link href="http://localhost:1313/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Hiểu Biết DOM Trong JavaScript</title><link>http://localhost:1313/posts/dom-js/</link><pubDate>Thu, 25 Sep 2025 21:01:12 +0700</pubDate><guid>http://localhost:1313/posts/dom-js/</guid><description>&lt;p&gt;DOM (Document Object Model) trong JavaScript giống như một &lt;strong&gt;bản đồ ngôi nhà&lt;/strong&gt; của trang web: nó biểu diễn mọi thứ trên trang (nút bấm, tiêu đề, hình ảnh) như các phòng, và bạn có thể vào từng phòng để xem, sửa, hoặc thêm đồ đạc.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 class="relative group"&gt;Mục Lục
+&lt;div id="mục-lục" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#m%e1%bb%a5c-l%e1%bb%a5c" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;DOM là gì?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;1.1. So sánh DOM với trang web thật&lt;/li&gt;
+&lt;li&gt;1.2. Cấu trúc cây DOM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;Tại sao cần DOM?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;2.1. Lợi ích trong phát triển web&lt;/li&gt;
+&lt;li&gt;2.2. Ví dụ thực tế (web động, game)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;Cách truy cập DOM&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;3.1. &lt;code&gt;document&lt;/code&gt; object&lt;/li&gt;
+&lt;li&gt;3.2. Các phương thức tìm phần tử&lt;/li&gt;
+&lt;li&gt;3.3. Bảng so sánh các phương thức tìm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;Thao tác với phần tử DOM&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;4.1. Truy cập nội dung (text, HTML)&lt;/li&gt;
+&lt;li&gt;4.2. Thay đổi thuộc tính (attribute)&lt;/li&gt;
+&lt;li&gt;4.3. Thay đổi style (CSS)&lt;/li&gt;
+&lt;li&gt;4.4. Thêm/xóa phần tử&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;Xử lý sự kiện (Event Handling)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;5.1. Sự kiện là gì?&lt;/li&gt;
+&lt;li&gt;5.2. Các cách thêm sự kiện&lt;/li&gt;
+&lt;li&gt;5.3. Ví dụ: Click, input, mouseover&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="6"&gt;
+&lt;li&gt;Duyệt cây DOM (DOM Traversal)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;6.1. Di chuyển đến cha, con, anh em&lt;/li&gt;
+&lt;li&gt;6.2. Ví dụ duyệt cây DOM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="7"&gt;
+&lt;li&gt;DOM và hiệu suất&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;7.1. Lỗi làm chậm trang&lt;/li&gt;
+&lt;li&gt;7.2. Cách tối ưu&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="8"&gt;
+&lt;li&gt;DOM ảo (Virtual DOM) và so sánh&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;8.1. Virtual DOM là gì?&lt;/li&gt;
+&lt;li&gt;8.2. So sánh với DOM thật&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;Ứng dụng thực tế&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;9.1. Xây dựng todo list động&lt;/li&gt;
+&lt;li&gt;9.2. Tạo hiệu ứng hover&lt;/li&gt;
+&lt;li&gt;9.3. Form validation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="10"&gt;
+&lt;li&gt;Lỗi thường gặp và cách tránh&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;10.1. Lỗi truy cập phần tử không tồn tại&lt;/li&gt;
+&lt;li&gt;10.2. Lỗi sự kiện lặp lại&lt;/li&gt;
+&lt;li&gt;10.3. Lỗi hiệu suất&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;Kết luận và mẹo sử dụng&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;Tài liệu tham khảo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 class="relative group"&gt;1. DOM là gì?
+&lt;div id="1-dom-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-dom-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Hình ảnh đời thường&lt;/strong&gt;: Hãy nghĩ trang web như một &lt;strong&gt;ngôi nhà&lt;/strong&gt;, với các phòng là tiêu đề, hình ảnh, nút bấm. DOM là &lt;strong&gt;bản đồ ngôi nhà&lt;/strong&gt;, giúp bạn tìm phòng (phần tử HTML), xem đồ đạc (nội dung), sửa đổi (thay màu tường), hoặc thêm phòng mới.&lt;/p&gt;</description></item><item><title>Class Trong Js</title><link>http://localhost:1313/posts/class-trong-js/</link><pubDate>Wed, 24 Sep 2025 16:01:27 +0700</pubDate><guid>http://localhost:1313/posts/class-trong-js/</guid><description>&lt;h1 class="relative group"&gt;Hiểu Biết Lớp Và Phương Pháp Tiếp Cận Dựa Trên Lớp Trong JavaScript (Phương Pháp Feynman)
+&lt;div id="hiểu-biết-lớp-và-phương-pháp-tiếp-cận-dựa-trên-lớp-trong-javascript-phương-pháp-feynman" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#hi%e1%bb%83u-bi%e1%ba%bft-l%e1%bb%9bp-v%c3%a0-ph%c6%b0%c6%a1ng-ph%c3%a1p-ti%e1%ba%bfp-c%e1%ba%adn-d%e1%bb%b1a-tr%c3%aan-l%e1%bb%9bp-trong-javascript-ph%c6%b0%c6%a1ng-ph%c3%a1p-feynman" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;Lớp (class) trong JavaScript giống như một &lt;strong&gt;bản thiết kế xe hơi&lt;/strong&gt; trong nhà máy: bạn vẽ chi tiết cách lắp ráp (cấu trúc), rồi sản xuất nhiều chiếc xe giống nhau (đối tượng), mỗi chiếc có thể tùy chỉnh (như màu sắc). Tôi sẽ giải thích như kể chuyện cho một người bạn chưa từng học lập trình, dùng nhiều hình ảnh đời thường, ví dụ code cụ thể, bảng so sánh, và flowchart để minh họa. Chúng ta sẽ đi chậm rãi, chia nhỏ thành nhiều phần con, để bạn nắm chắc từng khái niệm. JavaScript vốn dựa trên prototype (mẫu gốc), nhưng class là cách viết hiện đại, dễ hiểu hơn, giống lập trình hướng đối tượng (OOP) cổ điển.&lt;/p&gt;</description></item><item><title>Hiểu Biết Đối Tượng Trong JavaScrip</title><link>http://localhost:1313/posts/object-trong-js/</link><pubDate>Wed, 24 Sep 2025 15:20:02 +0700</pubDate><guid>http://localhost:1313/posts/object-trong-js/</guid><description>&lt;h1 class="relative group"&gt;Hiểu Biết Đối Tượng Trong JavaScript (Phương Pháp Feynman)
+&lt;div id="hiểu-biết-đối-tượng-trong-javascript-phương-pháp-feynman" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#hi%e1%bb%83u-bi%e1%ba%bft-%c4%91%e1%bb%91i-t%c6%b0%e1%bb%a3ng-trong-javascript-ph%c6%b0%c6%a1ng-ph%c3%a1p-feynman" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;Đối tượng trong JavaScript giống như một &lt;strong&gt;túi đồ&lt;/strong&gt; trong đời thực: bạn có thể bỏ nhiều thứ vào (như chìa khóa, điện thoại, ví tiền) và mỗi thứ có tên để lấy ra dễ dàng.&lt;/p&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/object-trong-js/images/i_obj_hu_46b3cb2286174efd.png 330w,
+/posts/object-trong-js/images/i_obj_hu_7e66787e1b94a8d1.png 660w,
+/posts/object-trong-js/images/i_obj_hu_1f28eb6bd578cb5c.png 1280w
+"
+data-zoom-src="http://localhost:1313/posts/object-trong-js/images/i_obj.png"
+src="http://localhost:1313/posts/object-trong-js/images/i_obj.png"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Mục lục
+&lt;div id="mục-lục" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#m%e1%bb%a5c-l%e1%bb%a5c" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Đối tượng là gì?&lt;/li&gt;
+&lt;li&gt;Tại sao sử dụng đối tượng?&lt;/li&gt;
+&lt;li&gt;Cách tạo đối tượng&lt;/li&gt;
+&lt;li&gt;Truy cập và sửa đổi thuộc tính&lt;/li&gt;
+&lt;li&gt;Phương thức trong đối tượng&lt;/li&gt;
+&lt;li&gt;Vòng lặp qua đối tượng&lt;/li&gt;
+&lt;li&gt;Sao chép đối tượng&lt;/li&gt;
+&lt;li&gt;Từ khóa &lt;code&gt;this&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Prototype và kế thừa&lt;/li&gt;
+&lt;li&gt;JSON và đối tượng&lt;/li&gt;
+&lt;li&gt;Kết luận và mẹo sử dụng&lt;/li&gt;
+&lt;li&gt;Tài liệu tham khảo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 class="relative group"&gt;1. Đối tượng là gì?
+&lt;div id="1-đối-tượng-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-%c4%91%e1%bb%91i-t%c6%b0%e1%bb%a3ng-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Hình ảnh đời thường&lt;/strong&gt;: Hãy nghĩ về đối tượng như một &lt;strong&gt;túi đồ&lt;/strong&gt; hoặc một &lt;strong&gt;hộp quà&lt;/strong&gt;. Trong hộp, bạn có thể để nhiều thứ: một cây bút (gọi là &amp;ldquo;bút&amp;rdquo;), một cuốn sổ (gọi là &amp;ldquo;sổ&amp;rdquo;), và mỗi thứ có thể lấy ra bằng tên. Đối tượng trong JavaScript cũng vậy: nó chứa nhiều &lt;strong&gt;thuộc tính&lt;/strong&gt; (như bút, sổ) và mỗi thuộc tính có &lt;strong&gt;tên&lt;/strong&gt; và &lt;strong&gt;giá trị&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title> Hiểu Biết Hàm Trong JavaScript (Phương Pháp Feynman)</title><link>http://localhost:1313/posts/ham-feynmen/</link><pubDate>Tue, 23 Sep 2025 10:20:17 +0700</pubDate><guid>http://localhost:1313/posts/ham-feynmen/</guid><description>&lt;h1 class="relative group"&gt;Hiểu Biết Hàm Trong JavaScript (Phương Pháp Feynman)
+&lt;div id="hiểu-biết-hàm-trong-javascript-phương-pháp-feynman" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#hi%e1%bb%83u-bi%e1%ba%bft-h%c3%a0m-trong-javascript-ph%c6%b0%c6%a1ng-ph%c3%a1p-feynman" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;Hàm trong JavaScript giống như những &lt;strong&gt;cỗ máy nhỏ&lt;/strong&gt; bạn tạo ra để làm một việc cụ thể, như tính toán, in lời chào, hoặc xử lý dữ liệu. Hãy tưởng tượng tôi đang kể chuyện cho một người bạn chưa biết gì về lập trình. Tôi sẽ dùng ví dụ đời thường, chia nhỏ từng khái niệm, và vẽ một bức tranh tổng thể để bạn dễ hình dung.&lt;/p&gt;</description></item><item><title>Hàm - function</title><link>http://localhost:1313/posts/ham/</link><pubDate>Tue, 23 Sep 2025 02:28:12 +0700</pubDate><guid>http://localhost:1313/posts/ham/</guid><description>&lt;h1 class="relative group"&gt;Hàm trong JavaScript
+&lt;div id="hàm-trong-javascript" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#h%c3%a0m-trong-javascript" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/ham/images/anh-nen_ham_hu_6119a3ad605f09b.png 330w,
+/posts/ham/images/anh-nen_ham_hu_3ba88ec5570f94e3.png 660w,
+/posts/ham/images/anh-nen_ham_hu_1736d904098e92ef.png 1280w
+"
+data-zoom-src="http://localhost:1313/posts/ham/images/anh-nen_ham.png"
+src="http://localhost:1313/posts/ham/images/anh-nen_ham.png"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Mục lục
+&lt;div id="mục-lục" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#m%e1%bb%a5c-l%e1%bb%a5c" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a
+href="#1-h%c3%a0m-l%c3%a0-g%c3%ac"&gt;Hàm là gì?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#2-t%e1%ba%a1i-sao-s%e1%bb%ad-d%e1%bb%a5ng-h%c3%a0m"&gt;Tại sao sử dụng hàm?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#3-khai-b%c3%a1o-h%c3%a0m"&gt;Khai báo hàm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#4-g%e1%bb%8di-h%c3%a0m"&gt;Gọi hàm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#5-bi%e1%ba%bfn-c%e1%bb%a5c-b%e1%bb%99-trong-h%c3%a0m"&gt;Biến cục bộ trong hàm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#6-c%c3%a2u-l%e1%bb%87nh-return"&gt;Câu lệnh return&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#7-tham-s%e1%bb%91-parameters"&gt;Tham số (Parameters)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#8-shadowing"&gt;Shadowing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#9-ki%e1%bb%83m-tra-tham-s%e1%bb%91"&gt;Kiểm tra tham số (Parameters Validation)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#10-%c4%91%e1%bb%87-quy-recursion"&gt;Đệ quy (Recursion)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#11-h%c3%a0m-nh%c6%b0-th%c3%a0nh-vi%c3%aan-h%e1%ba%a1ng-nh%e1%ba%a5t"&gt;Hàm như thành viên hạng nhất (First-class Citizens)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#12-bi%e1%bb%83u-th%e1%bb%a9c-h%c3%a0m"&gt;Biểu thức hàm (Function Expressions)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#13-callbacks"&gt;Callbacks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#14-callbacks-b%e1%ba%a5t-%c4%91%e1%bb%93ng-b%e1%bb%99"&gt;Callbacks bất đồng bộ (Asynchronous Callbacks)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#15-settimeout-v%c3%a0-setinterval"&gt;setTimeout và setInterval&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#16-arrow-functions"&gt;Arrow Functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#17-k%e1%ba%bft-lu%e1%ba%adn-v%c3%a0-m%e1%ba%b9o-s%e1%bb%ad-d%e1%bb%a5ng"&gt;Kết luận và mẹo sử dụng&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="#18-t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o"&gt;Tài liệu tham khảo&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 class="relative group"&gt;1. Hàm là gì?
+&lt;div id="1-hàm-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-h%c3%a0m-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 2"
+srcset="
+/posts/ham/images/i_ham_hu_81ec8f4e3bbecd7d.png 330w,
+/posts/ham/images/i_ham_hu_2c8a5f29e2393e19.png 660w,
+/posts/ham/images/i_ham_hu_6ddc7629eca8cb21.png 1280w
+"
+data-zoom-src="http://localhost:1313/posts/ham/images/i_ham.png"
+src="http://localhost:1313/posts/ham/images/i_ham.png"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Vòng Lập</title><link>http://localhost:1313/posts/vong-lap/</link><pubDate>Tue, 23 Sep 2025 01:11:33 +0700</pubDate><guid>http://localhost:1313/posts/vong-lap/</guid><description>&lt;h1 class="relative group"&gt;Vòng lặp (Loops) — Toàn tập, cực kỳ chi tiết
+&lt;div id="vòng-lặp-loops--toàn-tập-cực-kỳ-chi-tiết" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#v%c3%b2ng-l%e1%ba%b7p-loops--to%c3%a0n-t%e1%ba%adp-c%e1%bb%b1c-k%e1%bb%b3-chi-ti%e1%ba%bft" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/vong-lap/images/anhnen_loop_hu_32caed3a6b314693.png 330w,
+/posts/vong-lap/images/anhnen_loop_hu_96b3d01e3899f344.png 660w,
+/posts/vong-lap/images/anhnen_loop_hu_ed1483c6b6e2e8fa.png 1280w
+"
+data-zoom-src="http://localhost:1313/posts/vong-lap/images/anhnen_loop.png"
+src="http://localhost:1313/posts/vong-lap/images/anhnen_loop.png"&gt;
+&lt;/figure&gt;
+&lt;strong&gt;Mục tiêu:&lt;/strong&gt; chương này trình bày chi tiết mọi loại vòng lặp trong JavaScript, ví dụ thực tế, anti-patterns, so sánh, hiệu suất, các lỗi thường gặp và bài tập có lời giải. File này định dạng Markdown để dễ copy vào tài liệu hoặc website.&lt;/p&gt;</description></item><item><title>Câu Lệnh Điều Kiện</title><link>http://localhost:1313/posts/cau-lenh-dieu-kien/</link><pubDate>Mon, 22 Sep 2025 17:25:15 +0700</pubDate><guid>http://localhost:1313/posts/cau-lenh-dieu-kien/</guid><description>&lt;h1 class="relative group"&gt;Câu lệnh có điều kiện trong JavaScript
+&lt;div id="câu-lệnh-có-điều-kiện-trong-javascript" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#c%c3%a2u-l%e1%bb%87nh-c%c3%b3-%c4%91i%e1%bb%81u-ki%e1%bb%87n-trong-javascript" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;Câu lệnh điều kiện (conditional statements) giúp chương trình đưa ra quyết định, thực thi các nhánh code khác nhau dựa trên điều kiện đúng (&lt;code&gt;true&lt;/code&gt;) hoặc sai (&lt;code&gt;false&lt;/code&gt;). Bài viết này trình bày các loại câu lệnh điều kiện trong JavaScript, bao gồm ### Cú pháp, ví dụ minh họa, và sơ đồ luồng.&lt;/p&gt;</description></item><item><title>Toán tử và so sánh chuỗi</title><link>http://localhost:1313/posts/toan-tu/</link><pubDate>Mon, 22 Sep 2025 13:41:21 +0700</pubDate><guid>http://localhost:1313/posts/toan-tu/</guid><description>&lt;h2 class="relative group"&gt;1. Toán Tử
+&lt;div id="1-toán-tử" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-to%c3%a1n-t%e1%bb%ad" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/toan-tu/images/anh-nen_toantu_hu_89333fa9b2ebd7f1.jpg 330w,
+/posts/toan-tu/images/anh-nen_toantu_hu_9756a03832b96b20.jpg 660w,
+/posts/toan-tu/images/anh-nen_toantu_hu_7de07515455bc074.jpg 1280w
+"
+data-zoom-src="http://localhost:1313/posts/toan-tu/images/anh-nen_toantu.jpg"
+src="http://localhost:1313/posts/toan-tu/images/anh-nen_toantu.jpg"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 class="relative group"&gt;1.1 Toán tử là gì?
+&lt;div id="11-toán-tử-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#11-to%c3%a1n-t%e1%bb%ad-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;
+&lt;p&gt;Toán tử trong ngôn ngữ lập trình là các ký hiệu (đôi khi cũng là tên)
+được sử dụng để thực hiện các hành động nhất định trên &lt;strong&gt;các đối
+số&lt;/strong&gt; được gọi là &lt;strong&gt;toán hạng&lt;/strong&gt; .&lt;/p&gt;</description></item><item><title>Kiểu Dữ Liệu trong JavaScript</title><link>http://localhost:1313/posts/kieu-du-lieu-cua/</link><pubDate>Sun, 21 Sep 2025 10:16:00 +0700</pubDate><guid>http://localhost:1313/posts/kieu-du-lieu-cua/</guid><description>&lt;h1 class="relative group"&gt;Kiểu Dữ Liệu trong JavaScript
+&lt;div id="kiểu-dữ-liệu-trong-javascript" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u-trong-javascript" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h1&gt;
+&lt;h2 class="relative group"&gt;A. Kiểu Dữ Liệu
+&lt;div id="a-kiểu-dữ-liệu" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#a-ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;
+&lt;figure&gt;
+&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ảnh 1"
+srcset="
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_c217e747437fb66f.jpg 330w,
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_16169d75ab6cfe11.jpg 660w,
+/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap_hu_b54aab2547879bb1.jpg 1280w
+"
+data-zoom-src="http://localhost:1313/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg"
+src="http://localhost:1313/posts/kieu-du-lieu-cua/images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg"&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Trong JavaScript, có 6 kiểu dữ liệu cơ bản:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Number&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boolean&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;String&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Null&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undefined&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mặc dù JavaScript là ngôn ngữ weak type (kiểu yếu), không có nghĩa là nó không có khái niệm kiểu dữ liệu. JavaScript không yêu cầu chỉ định rõ ràng kiểu dữ liệu và có khả năng ép kiểu linh hoạt.&lt;/p&gt;</description></item><item><title>Giới thiệu về JavaScript</title><link>http://localhost:1313/posts/gioi-thieu-ve-javascript/</link><pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/gioi-thieu-ve-javascript/</guid><description>&lt;h2 class="relative group"&gt;JavaScript là gì?
+&lt;div id="javascript-là-gì" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#javascript-l%c3%a0-g%c3%ac" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;JavaScript (JS) là một ngôn ngữ lập trình phổ biến, chủ yếu được sử dụng để tạo các trang web tương tác. Nó chạy trên trình duyệt và cho phép thêm động lực cho HTML và CSS.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Đặc điểm chính
+&lt;div id="đặc-điểm-chính" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%c4%91%e1%ba%b7c-%c4%91i%e1%bb%83m-ch%c3%adnh" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client-side&lt;/strong&gt;: Chạy trên trình duyệt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic&lt;/strong&gt;: Cập nhật nội dung theo thời gian thực.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Hỗ trợ nhiều nền tảng.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="relative group"&gt;Ví dụ cơ bản
+&lt;div id="ví-dụ-cơ-bản" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#v%c3%ad-d%e1%bb%a5-c%c6%a1-b%e1%ba%a3n" aria-label="Cọc dấu"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Hello, JavaScript!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item></channel></rss>

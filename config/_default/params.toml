@@ -79,6 +79,8 @@ hasCJKLanguage = true                  # Bật để hỗ trợ tiếng Việt (
     sharingLinks = ["linkedin", "twitter", "facebook", "pinterest", "reddit", "email"] # Nút chia sẻ MXH
     showFeatureImage = true
     showFeatureImageInList = true
+    showRelatedContent = true
+    relatedContentLimit = 3
 
   # ----------------------------
   # Bình luận
@@ -107,3 +109,26 @@ hasCJKLanguage = true                  # Bật để hỗ trợ tiếng Việt (
     orderByWeight = false         # Có sắp xếp theo weight không
     showTableOfContents = false   # Ẩn TOC trong list page
     constrainItemsWidth = false   # Card có thể full width
+
+
+
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+
+[[related.indices]]
+  name = "keywords"
+  weight = 100
+
+[[related.indices]]
+  name = "tags"
+  weight = 80
+
+[[related.indices]]
+  name = "categories"
+  weight = 60
+
+[[related.indices]]
+  name = "date"
+  weight = 10

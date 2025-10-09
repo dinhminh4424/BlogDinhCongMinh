@@ -72,7 +72,51 @@
         {{ end }}
         {{ partial "series/series-closed.html" . }}
         {{ partial "sharing-links.html" . }}
-        {{ partial "related.html" . }}
+       {{ $related := .Site.RegularPages.Related . | first 6 }}
+{{ if $related }}
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-6">Bài viết liên quan</h2>
+
+    <div class="relative overflow-x-auto">
+      <div class="flex gap-4">
+        {{ range $related }}
+          {{ $imgName := .Params.featuredImagePreview | default .Params.featuredImage }}
+          {{ $imgURL := "" }}
+          {{ if $imgName }}
+            {{ $match := .Resources.Match $imgName }}
+            {{ if gt (len $match) 0 }}
+              {{ $img := index $match 0 }}
+              {{ $imgURL = $img.RelPermalink }}
+            {{ else }}
+              {{ if strings.HasPrefix $imgName "http" }}
+                {{ $imgURL = $imgName }}
+              {{ else }}
+                {{ $imgURL = (printf "/%s" $imgName) | relURL }}
+              {{ end }}
+            {{ end }}
+          {{ else }}
+            {{ $imgURL = "/images/default-thumb.jpg" | relURL }}
+          {{ end }}
+
+          <a href="{{ .RelPermalink }}" class="min-w-[220px] group rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden shadow hover:shadow-lg transition">
+            <div
+              class="h-40 bg-cover bg-center"
+              style="background-image: url('{{ $imgURL }}'); background-size: cover; background-position: center;"
+            ></div>
+            <div class="p-3">
+              <h4 class="text-base font-semibold group-hover:text-blue-500 transition text-center">
+                {{ .Title }}
+              </h4>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+        
+
+
       </div>
 
       {{ $translations := .AllTranslations }}

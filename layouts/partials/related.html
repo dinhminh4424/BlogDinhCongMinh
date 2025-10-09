@@ -1,0 +1,84 @@
+{{/* layouts/partials/related.html Horizontal swipeable related posts. Uses Hugo
+.Related and fallback by tags if needed. */}} {{ if .Params.showRelatedContent |
+default (.Site.Params.article.showRelatedContent | default false) }} {{ $limit
+:= .Site.Params.article.relatedContentLimit | default 3 }} {{ $related :=
+.Site.RegularPages.Related . | first $limit }} {{/* Fallback: nếu Hugo .Related
+trả về 0, dùng thủ công bằng intersect(tags) */}} {{ if eq (len $related) 0 }}
+{{ $cur := . }} {{ $curTags := default (slice) .Params.tags }} {{ $found :=
+slice }} {{ range .Site.RegularPages }} {{ if ne .Permalink $cur.Permalink }} {{
+$tags := default (slice) .Params.tags }} {{ $common := intersect $curTags $tags
+}} {{ if gt (len $common) 0 }} {{ $found = $found | append (dict "page" .
+"score" (len $common)) }} {{ end }} {{ end }} {{ end }} {{ $found = sort $found
+"score" "desc" }} {{ $found = sort $found "page.Date" "desc" }} {{ $found =
+first $limit $found }} {{ $related = slice }} {{ range $found }} {{ $related =
+$related | append .page }} {{ end }} {{ end }} {{ if gt (len $related) 0 }}
+<h2 class="mt-8 text-2xl font-extrabold mb-6">
+  {{ i18n "article.related_articles" | default "Bài viết liên quan" }}
+</h2>
+
+<div class="related-scroll overflow-x-auto py-2 -mx-4 px-4">
+  <div class="flex items-stretch gap-4">
+    {{ range $related }} {{ $page := . }} {{ $imgName := (or
+    $page.Params.featuredImagePreview $page.Params.featuredImage) }} {{ $imgURL
+    := "" }} {{ if $imgName }} {{ $match := $page.Resources.Match $imgName }} {{
+    if gt (len $match) 0 }} {{ $img := index $match 0 }} {{ $imgURL =
+    $img.RelPermalink }} {{ else }} {{ if strings.HasPrefix $imgName "http" }}
+    {{ $imgURL = $imgName }} {{ else }} {{ $imgURL = (printf "/%s" $imgName) |
+    relURL }} {{ end }} {{ end }} {{ else }} {{ if $page.Params.thumbnail }} {{
+    $imgURL = ($page.Params.thumbnail | relURL) }} {{ else }} {{ $imgURL =
+    ("/images/default-thumb.jpg") | relURL }} {{ end }} {{ end }}
+
+    <a
+      href="{{ $page.RelPermalink }}"
+      class="group related-card min-w-[260px] max-w-[260px] md:min-w-[320px] md:max-w-[320px] bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg transition-transform transform hover:-translate-y-1 relative overflow-hidden"
+    >
+      <div
+        class="w-full h-40 bg-cover bg-center"
+        style="background-image:url('{{ $imgURL }}')"
+      ></div>
+      <div class="p-4">
+        <div class="text-sm text-neutral-500 mb-1">
+          {{ with $page.Params.categories }}{{ index . 0 }}{{ end }}
+        </div>
+        <h3
+          class="text-base font-semibold leading-tight text-neutral-900 dark:text-neutral-100 mb-1 truncate"
+        >
+          {{ $page.Title }}
+        </h3>
+        {{ with $page.Summary }}
+        <p class="text-sm text-neutral-600 dark:text-neutral-300 line-clamp-3">
+          {{ . | plainify | truncate 100 }}
+        </p>
+        {{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+  .related-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+  .related-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .related-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+  .related-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+  }
+</style>
+{{ else }}
+<!-- không có bài liên quan -->
+{{ end }} {{ end }}

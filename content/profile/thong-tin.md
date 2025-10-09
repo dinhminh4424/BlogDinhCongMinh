@@ -11,30 +11,33 @@ jobtitle: "Lập trình viên Full-stack | .NET & AI Enthusiast"
 Đinh Công Minh
 {{< /typeit >}}
 
-# {{< badge >}}Sẵn sàng làm việc{{< /badge >}}
-
 {{< typeit speed=70 lifeLike=true startDelay=500 >}}
 Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc
 {{< /typeit >}}
 
-{{< swatches "#3b82f6" "#10b981" "#f59e0b" "#ef4444" "#8b5cf6" >}}
-
 {{< lead >}}
-📍 11496/1, Trang Dai, Bien Hoa City, Dong Nai Province  
-📞 0776117577 • 📧 dinhminh4424@gmail.com • 🎂 04/04/2004
+11496/1, Trang Dai, Bien Hoa City, Dong Nai
 {{< /lead >}}
 
+{{< lead >}}
+0776117577 • dinhminh4424@gmail.com • 04/04/2004
+{{< /lead >}}
+
+<div style="text-align: center;">
+
 {{< button href="https://www.facebook.com/inhminh.196020" target="_blank" >}}
-{{< icon "facebook" >}} Kết nối Facebook
+{{< icon "facebook" >}} Facebook
 {{< /button >}}
 
 {{< button href="https://github.com/dinhminh4424" target="_blank" >}}
-{{< icon "github" >}} GitHub Portfolio
+{{< icon "github" >}} GitHub
 {{< /button >}}
 
 {{< button href="mailto:dinhminh4424@gmail.com" >}}
-{{< icon "envelope" >}} Email ngay
+{{< icon "envelope" >}} Email
 {{< /button >}}
+
+</div>
 
 ---
 
@@ -315,12 +318,10 @@ Cùng nhau tạo ra những sản phẩm công nghệ xuất sắc!
 {{< /button >}}
 
 {{< button href="https://github.com/dinhminh4424" target="_blank" >}}
-{{< icon "github" >}} GitHub Portfolio
+{{< icon "github" >}} GitHub
 {{< /button >}}
 
 {{< alert icon="heart" cardColor="#fdf2f8" iconColor="#ec4899" >}}
 **"Mỗi dòng code là một câu chuyện, mỗi sản phẩm là một hành trình"**  
 _Sẵn sàng cho những thử thách mới và cơ hội hợp tác đầy cảm hứng!_
 {{< /alert >}}
-
-{{< swatches "#3b82f6" "#10b981" "#f59e0b" "#ef4444" "#8b5cf6" "#ec4899" >}}

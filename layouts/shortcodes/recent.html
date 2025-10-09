@@ -1,0 +1,60 @@
+{{/* layouts/shortcodes/recent.html Usage: {{< recent limit="9" columns="3"
+section="posts" >}} */}} {{ $limit := .Get "limit" | default "6" | int }} {{
+$cols := .Get "columns" | default "3" | int }} {{ $section := .Get "section" |
+default "posts" }} {{ $pages := where .Site.RegularPages "Section" $section }}
+{{ $pagesList := first $limit $pages }}
+
+<div
+  class="grid gap-4"
+  style="grid-template-columns: repeat({{ $cols }}, minmax(0,1fr));"
+>
+  {{ range $pagesList }} {{/* Decide image name: featuredImagePreview (if set)
+  else featuredImage */}} {{ $imgName := .Params.featuredImagePreview | default
+  .Params.featuredImage }} {{ $imgURL := "" }} {{ if $imgName }} {{/* If image
+  stored as page resource (page bundle) */}} {{ $match := .Resources.Match
+  $imgName }} {{ if gt (len $match) 0 }} {{ $img := index $match 0 }} {{ $imgURL
+  = $img.RelPermalink }} {{ else }} {{/* treat as path under static/ or relative
+  string like "images/..." */}} {{ if strings.HasPrefix $imgName "http" }} {{
+  $imgURL = $imgName }} {{ else }} {{ $imgURL = (printf "/%s" $imgName) | relURL
+  }} {{ end }} {{ end }} {{ else }} {{/* fallback to thumbnail param or site
+  avatar or default */}} {{ if .Params.thumbnail }} {{ $imgURL =
+  (.Params.thumbnail | relURL) }} {{ else if site.Params.avatar }} {{ $imgURL =
+  (printf "/profile/%s" site.Params.avatar) | relURL }} {{ else }} {{ $imgURL =
+  "/images/default-thumb.jpg" | relURL }} {{ end }} {{ end }}
+
+  <a
+    href="{{ .RelPermalink }}"
+    class="group-hover-card group relative overflow-hidden rounded-xl border border-2 border-neutral-200 shadow dark:border-neutral-700"
+  >
+    <div
+      class="w-full h-48 bg-center bg-cover"
+      style="background-image:url('{{ $imgURL }}'); background-size: cover; background-position: center;"
+    ></div>
+
+    <!-- optional overlay (appears on hover) -->
+    <div
+      class="absolute inset-0 flex items-end justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
+    >
+      <div
+        class="bg-black/30 text-white text-sm px-3 py-1 rounded mb-3 pointer-events-auto"
+      >
+        {{ .Title }}
+      </div>
+    </div>
+  </a>
+  {{ end }}
+</div>
+
+<style>
+  /* small responsive tweak if theme doesn't provide */
+  @media (max-width: 768px) {
+    .grid[style*="grid-template-columns"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .grid[style*="grid-template-columns"] {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+  }
+</style>

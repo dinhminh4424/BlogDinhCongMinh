@@ -11,12 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive  # Quan trọng: kéo luôn theme Hugo nếu có
+          submodules: recursive # Quan trọng: kéo luôn theme Hugo nếu có
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: "latest"
+          # Bắt buộc cho theme Blowfish và các theme dùng SCSS/SASS
+          extended: true
 
       - name: Build site
         run: hugo --minify

@@ -1,70 +1,71 @@
-#baseURL = "http://localhost:1313/"   # Dùng URL cục bộ để kiểm tra baseURL = "https://dinhminh4424.github.io/BlogDinhCongMinh/"
-baseURL = "https://dinhminh4424.github.io/BlogDinhCongMinh/"  
-relativeURLs = true
+# baseURL đã chính xác, giữ nguyên
+baseURL = "https://dinhminh4424.github.io/BlogDinhCongMinh/"
+
+# SỬA LỖI QUAN TRỌNG: Tắt relativeURLs để CSS/JS hoạt động đúng
+relativeURLs = false
 canonifyURLs = false
-  title = "DinhCongMinh_1916 2242"
-  theme = "blowfish"
-  defaultContentLanguage = "vi"
 
-  enableRobotsTXT = true
-  buildDrafts = false
-  buildFuture = false
-  buildExpired = false
+title = "DinhCongMinh_1916 2242"
+theme = "blowfish"
+defaultContentLanguage = "vi"
 
-  [params]
-    customCss = ["css/custom.css"]
-    customJs = ["js/custom.js"]
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
 
-  # ⚡️ KHÔNG dùng paginate nữa
-  [pagination]
-    pagerSize = 6   # Số bài viết mỗi trang
+[params]
+  customCss = ["css/custom.css"]
+  customJs = ["js/custom.js"]
 
-  [outputs]
-    home = ["HTML", "RSS", "JSON"]  # JSON dùng cho search client-side
+# SỬA LỖI CÚ PHÁP: Dùng "paginate"
+[pagination]
+  paginate = 6   # Số bài viết mỗi trang
 
-  [taxonomies]
-    category = "categories"
-    tag = "tags"
+[outputs]
+  home = ["HTML", "RSS", "JSON"]  # JSON dùng cho search client-side
 
-  
-    # ----------------------------
-    # Menu điều hướng
-    # ----------------------------
-    [menu]
-      [[menu.main]]
-        identifier = "home"
-        name = "Trang Chủ"
-        url = "/"
-        weight = 1
+[taxonomies]
+  category = "categories"
+  tag = "tags"
 
-      [[menu.main]]
-        identifier = "posts"
-        name = "Bài Viết"
-        url = "/posts/"
-        weight = 2
 
-      [[menu.main]]
-        identifier = "categories"
-        name = "Danh Mục"
-        url = "/categories/"
-        weight = 3
+# ----------------------------
+# Menu điều hướng (Phần này đã đúng)
+# ----------------------------
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Trang Chủ"
+    url = "/"
+    weight = 1
 
-      [[menu.main]]
-        identifier = "tags"
-        name = "Thẻ"
-        url = "/tags/"
-        weight = 4
+  [[menu.main]]
+    identifier = "posts"
+    name = "Bài Viết"
+    url = "/posts/"
+    weight = 2
 
-      [[menu.main]]
-        identifier = "search"
-        name = "Tìm Kiếm"
-        url = "/search/"
-        weight = 5
+  [[menu.main]]
+    identifier = "categories"
+    name = "Danh Mục"
+    url = "/categories/"
+    weight = 3
 
-      [[menu.main]]
-        identifier = "thongtin"
-        name = "Thông Tin"
-        url = "/profile/thong-tin"
-        weight = 6  # Sub-menu thứ tự 1
+  [[menu.main]]
+    identifier = "tags"
+    name = "Thẻ"
+    url = "/tags/"
+    weight = 4
 
-        
+  [[menu.main]]
+    identifier = "search"
+    name = "Tìm Kiếm"
+    url = "/search/"
+    weight = 5
+
+  [[menu.main]]
+    identifier = "thongtin"
+    name = "Thông Tin"
+    url = "/profile/thong-tin"
+    weight = 6

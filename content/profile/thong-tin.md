@@ -3,7 +3,7 @@ title: "Thông Tin"
 date: 2025-09-29T23:41:00+07:00
 draft: false
 layout: profile/single
-avatar: "/profile/images/MINH-3.jpg"
+avatar: "images/MINH-3.jpg"
 jobtitle: "Lập trình viên Full-stack | .NET & AI Enthusiast"
 ---
 
@@ -41,13 +41,13 @@ Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc
 
 ---
 
-## 🎓 Hành trình học vấn
+## Hành trình học vấn
 
 {{< timeline >}}
 
 {{< timelineItem icon="graduation-cap" header="Đại học Công nghệ TP.HCM" badge="2022 - Hiện tại" subheader="Cử nhân Công nghệ Thông tin" >}}
 {{< alert icon="star" cardColor="#f0f9ff" >}}
-**GPA:** 3.5/4.0 • **Chuyên ngành:** Phát triển Phần mềm
+**Chuyên ngành:** Công nghệ thông tin
 {{< /alert >}}
 
 {{< keywordList >}}
@@ -62,7 +62,7 @@ Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc
 
 ---
 
-## 💻 Bản đồ kỹ năng công nghệ
+## Bản đồ kỹ năng công nghệ
 
 {{< alert icon="rocket" cardColor="#fef7ed" iconColor="#f59e0b" >}}
 **Lập trình viên Full-stack với thế mạnh về .NET Ecosystem và AI Integration**
@@ -93,61 +93,50 @@ suggestedMax: 100
 }
 {{< /chart >}}
 
-### 🛠️ Ngôn ngữ & Framework
+### Ngôn ngữ & Framework
 
 {{< gallery >}}
-<img src="/profile/images/MINH-3.jpg" class="grid-w25" alt=".NET Core" />
-<img src="/profile/images/MINH-3.jpg" class="grid-w25" alt="Python" />
-<img src="/profile/images/MINH-3.jpg" class="grid-w25" alt="JavaScript" />
-<img src="/profile/images/MINH-3.jpg" class="grid-w25" alt="Flutter" />
+<img src="/BlogDinhCongMinh/profile/images/netcore.png" style="with:100px; height: 100px;" class="grid-w25" alt=".NET Core" />
+<img src="/BlogDinhCongMinh/profile/images/c.png" style="with:100px; height: 100px;"  class="grid-w25" alt="c#" />
+<img src="/BlogDinhCongMinh/profile/images/js.png" style="with:100px; height: 100px;" class="grid-w25" alt="JavaScript" />
+<img src="/BlogDinhCongMinh/profile/images/dart.png" style="with:100px; height: 100px;" class="grid-w25" alt="Flutter" />
 {{< /gallery >}}
 
 {{< keywordList >}}
 {{< keyword icon="diamond" >}} **.NET Core/ASP.NET** {{< /keyword >}}
-{{< keyword icon="python" >}} **Python & AI Libraries** {{< /keyword >}}
+{{< keyword icon="python" >}} **C/C#** {{< /keyword >}}
 {{< keyword icon="js" >}} **JavaScript/TypeScript** {{< /keyword >}}
 {{< keyword icon="mobile" >}} **Flutter/Dart** {{< /keyword >}}
 {{< keyword icon="database" >}} **SQL Server/MySQL** {{< /keyword >}}
 {{< keyword icon="mongodb" >}} **MongoDB** {{< /keyword >}}
 {{< keyword icon="node" >}} **Node.js/Express** {{< /keyword >}}
-{{< keyword icon="html5" >}} **HTML5/CSS3/Bootstrap** {{< /keyword >}}
+{{< keyword icon="html5" >}} **HTML/CSS/Bootstrap** {{< /keyword >}}
 {{< /keywordList >}}
 
 ---
 
-## 🏆 Hành trình thành công
+## Cuộc thi và giải thưởng
 
 {{< carousel images="{awards/db-champion.jpg,awards/math-logic.jpg,awards/code-war.jpg}" aspectRatio="16-9" interval="3500" >}}
 
 {{< timeline >}}
 
-{{< timelineItem icon="trophy" header="Vô địch Thiết kế Database" badge="2024" >}}
-{{< alert icon="database" cardColor="#f0fdf4" >}}
-**Giải Nhất HUTECH Database Design** - Thiết kế hệ thống chuẩn hóa với hiệu năng tối ưu
-{{< /alert >}}
-
-{{< chart >}}
-type: 'bar',
-data: {
-labels: ['Design Phase', 'Normalization', 'Query Optimization', 'Final Result'],
-datasets: [{
-label: 'Hiệu suất đạt được',
-data: [70, 85, 90, 95],
-backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
-}]
-}
-{{< /chart >}}
-{{< /timelineItem >}}
-
-{{< timelineItem icon="brain" header="Giải Ba Tư duy Logic" badge="2024" >}}
-{{< alert icon="award" cardColor="#fff3cd" >}}
-**Mathematical Logical Thinking** - Top 3 với giải pháp thuật toán sáng tạo
-{{< /alert >}}
-{{< /timelineItem >}}
-
-{{< timelineItem icon="code" header="Chung kết IT Code War" badge="2025" >}}
+{{< timelineItem icon="code" header="Thiết kế Database" badge="2024" >}}
 {{< alert icon="fire" cardColor="#fef2f2" >}}
-**Top 10 National Finalist** - Giải pháp tối ưu thuật toán đa chiều
+**Kinh nghiệm đạt được:** - tối ưu dữ liệu đầu vào
+{{< /alert >}}
+
+{{< /timelineItem >}}
+
+{{< timelineItem icon="code" header="Tư duy Logic" badge="2024" >}}
+{{< alert icon="fire" cardColor="#fef2f2" >}}
+**Thành tích:** - Top 3 với Tư duy Logic toán học
+{{< /alert >}}
+{{< /timelineItem >}}
+
+{{< timelineItem icon="code" header=" IT Code War" badge="2025" >}}
+{{< alert icon="fire" cardColor="#fef2f2" >}}
+**Kinh nghiệm đạt được:** Giải pháp tối ưu đa chiều
 {{< /alert >}}
 {{< /timelineItem >}}
 
@@ -155,9 +144,9 @@ backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
 
 ---
 
-## 🚀 Portfolio sáng tạo
+## Portfolio sáng tạo
 
-### 🔍 AI Missing Person Finder
+### AI Missing Person Finder
 
 {{< alert icon="robot" cardColor="#f0fdf4" iconColor="#10b981" >}}
 **Hệ thống tìm kiếm người mất tích ứng dụng AI Computer Vision**
@@ -182,17 +171,20 @@ backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
 
 ---
 
-### 🐶 PetCare Smart Platform
+### PetCare Smart Platform
 
 {{< article link="/projects/petcare" showSummary=true compactSummary=true >}}
 
 {{< gallery >}}
-<img src="projects/petcare-1.jpg" class="grid-w50" alt="PetCare Dashboard" />
-<img src="projects/petcare-2.jpg" class="grid-w50" alt="Vet Booking" />
+<img src="/BlogDinhCongMinh/profile/images/pet_1.png" class="grid-w50" alt="PetCare Dashboard" />
+<img src="/BlogDinhCongMinh/profile/images/pet_2.png" class="grid-w50" alt="Vet Booking" />
+<img src="/BlogDinhCongMinh/profile/images/pet_3.png" class="grid-w50" alt="PetCare Dashboard" />
+<img src="/BlogDinhCongMinh/profile/images/pet_4.png" class="grid-w50" alt="PetCare Dashboard" />
+
 {{< /gallery >}}
 
 {{< chart >}}
-type: 'doughnut',
+type: 'bar',
 data: {
 labels: ['Frontend UI', 'Backend API', 'Database', 'AI Chatbot'],
 datasets: [{

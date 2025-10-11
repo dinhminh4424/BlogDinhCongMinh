@@ -130,7 +130,7 @@ suggestedMax: 100
 
 {{< timelineItem icon="code" header="Tư duy Logic" badge="2024" >}}
 {{< alert icon="fire" cardColor="#fef2f2" >}}
-**Thành tích:** - Top 3 với Tư duy Logic toán học
+**Thành tích:** - Top 3 Tư duy Logic toán học
 {{< /alert >}}
 {{< /timelineItem >}}
 

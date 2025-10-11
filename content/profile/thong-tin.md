@@ -3,7 +3,7 @@ title: "Thông Tin"
 date: 2025-09-29T23:41:00+07:00
 draft: false
 layout: profile/single
-avatar: "images/MINH-3.jpg"
+avatar: "/profile/images/MINH-3.jpg"
 jobtitle: "Lập trình viên Full-stack | .NET & AI Enthusiast"
 ---
 

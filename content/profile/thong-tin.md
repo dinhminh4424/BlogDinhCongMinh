@@ -156,9 +156,9 @@ suggestedMax: 100
 
 **Quy trình hoạt động:**
 {{< timeline >}}
-{{< timelineItem icon="upload" header="Upload Ảnh" >}}Hệ thống nhận diện khuôn mặt tự động{{< /timelineItem >}}
-{{< timelineItem icon="search" header="AI Analysis" >}}OCR trích xuất thông tin văn bản{{< /timelineItem >}}
-{{< timelineItem icon="database" header="Smart Matching" >}}So khớp thông minh đa tiêu chí{{< /timelineItem >}}
+{{< timelineItem icon="bell" header="Upload Ảnh" >}}Hệ thống nhận diện khuôn mặt tự động{{< /timelineItem >}}
+{{< timelineItem icon="bell" header="AI Analysis" >}}OCR trích xuất thông tin văn bản{{< /timelineItem >}}
+{{< timelineItem icon="bell" header="Smart Matching" >}}So khớp thông minh đa tiêu chí{{< /timelineItem >}}
 {{< timelineItem icon="bell" header="Real-time Alert" >}}Thông báo kết quả tức thì{{< /timelineItem >}}
 {{< /timeline >}}
 
@@ -194,26 +194,7 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 }
 {{< /chart >}}
 
----
-
-### 🎵 Flutter Music Symphony
-
-{{< alert icon="music" cardColor="#faf5ff" iconColor="#8b5cf6" >}}
-**Ứng dụng nghe nhạc đa nền tảng với trải nghiệm cá nhân hóa**
-{{< /alert >}}
-
-{{< youtubeLite id="dQw4w9WgXcQ" label="Flutter App Demo" params="controls=1" >}}
-
-**Kiến trúc hiện đại:**
-{{< badge >}}Flutter Bloc{{< /badge >}}
-{{< keyword >}}RESTful API{{< /keyword >}}
-{{< badge >}}SQLite{{< /badge >}}
-{{< keyword >}}Provider Pattern{{< /keyword >}}
-{{< badge >}}Firebase Auth{{< /badge >}}
-
----
-
-## 💼 Kinh nghiệm chuyên môn
+## Kinh nghiệm chuyên môn
 
 {{< timeline >}}
 
@@ -234,7 +215,7 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 
 ---
 
-## 📜 Chứng chỉ & Bằng cấp
+## Chứng chỉ & Bằng cấp
 
 {{< keywordList >}}
 {{< keyword icon="certificate" >}} **TOEIC B1** - 84/100 {{< /keyword >}}
@@ -246,11 +227,11 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 
 ---
 
-## 🎯 Lộ trình phát triển
+## Lộ trình phát triển
 
 {{< timeline >}}
 
-{{< timelineItem icon="target" header="Mục tiêu 2024-2025" badge="Short-term" >}}
+{{< timelineItem icon="star" header="Mục tiêu 2024-2025" badge="Short-term" >}}
 {{< alert icon="rocket" cardColor="#eff6ff" >}}
 **Full-stack Developer | .NET Specialist**
 
@@ -261,7 +242,7 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
   {{< /alert >}}
   {{< /timelineItem >}}
 
-{{< timelineItem icon="trophy" header="Mục tiêu 2026+" badge="Long-term" >}}
+{{< timelineItem icon="star" header="Mục tiêu 2026+" badge="Long-term" >}}
 {{< alert icon="star" cardColor="#fff7ed" >}}
 **Tech Lead | AI Solutions Architect**
 
@@ -276,24 +257,23 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 
 ---
 
-## ⚽ Đời sống cá nhân
+## Đời sống cá nhân
 
 {{< gallery >}}
-<img src="/profile/images/MINH-3.jpg" class="grid-w33" alt="Playing Soccer" />
-<img src="/profile/images/MINH-3.jpg" class="grid-w33" alt="Side Projects" />
-<img src="/profile/images/MINH-3.jpg" class="grid-w33" alt="Tech Community" />
+<img src="/BlogDinhCongMinh/profile/images/dabong.jpg" class="grid-w33" alt="Tham Gia Hoạt Động Thể Thao Cùng Đồng Đội" />
+<img src="/BlogDinhCongMinh/profile/images/docsach.jpg" class="grid-w33" alt="Phát Triển Dự Án Cá Nhân Về Lập Trình" />
+<img src="/BlogDinhCongMinh/profile/images/relax.jpg" class="grid-w33" alt="Tham Gia Cộng Đồng Công Nghệ" />
 {{< /gallery >}}
-
 {{< keywordList >}}
-{{< keyword icon="futbol" >}} **Đá bóng cuối tuần** {{< /keyword >}}
-{{< keyword icon="code" >}} **Lập trình dự án cá nhân** {{< /keyword >}}
-{{< keyword icon="book" >}} **Đọc sách công nghệ** {{< /keyword >}}
-{{< keyword icon="users" >}} **Tech Meetups & Workshops** {{< /keyword >}}
+{{< keyword icon="futbol" >}} Tham Gia Bóng Đá Cuối Tuần Để Tăng Cường Sức Khỏe Và Tinh Thần Đội Nhóm {{< /keyword >}}
+{{< keyword icon="code" >}} Phát Triển Và Thử Nghiệm Các Ý Tưởng Lập Trình Mới {{< /keyword >}}
+{{< keyword icon="book" >}} Đọc Sách Về Công Nghệ Và Phát Triển Bản Thân {{< /keyword >}}
+{{< keyword icon="music" >}} Thư Giãn Với Âm Nhạc Và Phim Ảnh Để Cân Bằng Cuộc Sống {{< /keyword >}}
 {{< /keywordList >}}
 
 ---
 
-## 📞 Kết nối & Hợp tác
+## Kết nối & Hợp tác
 
 {{< lead >}}
 {{< typeit speed=50 >}}

@@ -58,14 +58,10 @@ buildExpired = false
     url = "/tags/"
     weight = 4
 
-  [[menu.main]]
-    identifier = "search"
-    name = "Tìm Kiếm"
-    url = "/search/"
-    weight = 5
+
 
   [[menu.main]]
     identifier = "thongtin"
     name = "Thông Tin"
     url = "/profile/thong-tin"
-    weight = 6
+    weight = 5

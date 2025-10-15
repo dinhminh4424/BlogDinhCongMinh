@@ -1,76 +1,2518 @@
 {{ define "main" }}
-  {{ .Scratch.Set "scope" "single" }}
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center py-4">
-    <article class="max-w-3xl w-full px-4 sm:px-6 mx-auto">
-      {{/* Header with Avatar */}}
-      <header class="mt-5 text-center">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<style>
+  :root {
+    --accent: #2563eb;
+    --bg-light: #ffffff;
+    --bg-dark: #0a0a0a;
+    --text-light: #1e1e1e;
+    --text-dark: #e5e5e5;
+    --border-light: #e5e5e5;
+    --border-dark: #2a2a2a;
+  }
+
+  /* GLOBAL UNDERLINE REMOVAL FOR PROFILE - HIGHEST PRIORITY */
+  #profile-content *,
+  #profile-content *::before,
+  #profile-content *::after {
+    text-decoration: none !important;
+  }
+
+  #profile-content a,
+  #profile-content a:hover,
+  #profile-content a:focus,
+  #profile-content a:active,
+  #profile-content a:visited,
+  #profile-content a:link,
+  #profile-footer a,
+  #profile-footer a:hover {
+    text-decoration: none !important;
+  }
+
+  #profile-content {
+    font-family: "Inter", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  body.dark #profile-content {
+    color: var(--text-dark);
+  }
+
+  .quick-nav {
+    position: fixed;
+    top: 6rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .quick-link {
+    padding: 0.625rem 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+  }
+
+  body.dark .quick-link {
+    background: rgba(26, 26, 26, 0.95);
+    color: var(--text-dark);
+  }
+
+  .quick-link:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    border-color: var(--accent);
+  }
+
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  body.dark .theme-toggle {
+    background: rgba(26, 26, 26, 0.95);
+    border-color: var(--border-dark);
+  }
+
+  .theme-toggle:hover {
+    transform: rotate(180deg);
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border-light);
+  }
+
+  body.dark .btn-secondary {
+    border-color: var(--border-dark);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(37, 99, 235, 0.1);
+  }
+
+  .hero-avatar {
+    position: relative;
+  }
+
+  .hero-avatar img {
+    width: 100%;
+    border-radius: 16px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .status-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-badge i {
+    font-size: 0.5rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Section */
+  section {
+    padding: 4rem 0;
+    border-top: 1px solid transparent;
+  }
+
+  section:not(:first-child) {
+    border-top-color: var(--border-light);
+  }
+
+  body.dark section:not(:first-child) {
+    border-top-color: var(--border-dark);
+  }
+
+  .section-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* Accordion */
+  .accordion {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  body.dark .accordion {
+    border-color: var(--border-dark);
+  }
+
+  .accordion:hover {
+    border-color: var(--accent);
+  }
+
+  .accordion-header {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .accordion-header:hover {
+    background: rgba(37, 99, 235, 0.05);
+  }
+
+  .accordion-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .accordion-icon {
+    color: var(--accent);
+    font-size: 1.25rem;
+  }
+
+  .accordion-toggle {
+    transition: transform 0.3s;
+    color: var(--accent);
+  }
+
+  .accordion.active .accordion-toggle {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .accordion-content-inner {
+    padding: 1.5rem;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .skill-item {
+    padding: 1rem;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  body.dark .skill-item {
+    border-color: var(--border-dark);
+  }
+
+  .skill-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .skill-item i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-light);
+  }
+
+  body.dark .timeline::before {
+    background: var(--border-dark);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -2.5rem;
+    top: 0.25rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .timeline-date {
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc {
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  /* Projects - Professional Design */
+  .projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .project-showcase {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUpProject 0.8s ease-out forwards;
+  }
+
+  .project-showcase:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .project-showcase:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUpProject {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  body.dark .project-showcase {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .project-showcase:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+  }
+
+  .project-showcase:hover .project-title-main i {
+    animation: bounce-soft 0.6s ease;
+  }
+
+  .project-header {
+    padding: 2rem;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+  }
+
+  .project-title-main {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .project-subtitle {
+    opacity: 0.7;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .project-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    grid-auto-rows: 200px;
+  }
+
+  .project-gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .project-gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .project-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .project-gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-gallery-item:hover::after {
+    opacity: 1;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-features {
+    background: rgba(37, 99, 235, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .project-features h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .project-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-features li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-features li::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-badge {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.1),
+      rgba(139, 92, 246, 0.1)
+    );
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .tech-badge:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.2),
+      rgba(139, 92, 246, 0.2)
+    );
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  }
+
+  .project-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: 8px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+
+  .project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .project-btn {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .project-btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .project-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .project-btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+  }
+
+  .project-btn-secondary:hover {
+    background: rgba(37, 99, 235, 0.1);
+  }
+
+  /* Additional Styles */
+  .project-gallery-item {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark .project-gallery-item {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-gallery-item:hover {
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+  }
+
+  .tech-badge {
+    user-select: none;
+  }
+
+  .stat-item {
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    transform: translateY(-4px);
+    background: rgba(37, 99, 235, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .project-body {
+      grid-template-columns: 1fr;
+    }
+
+    .project-gallery {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 250px;
+    }
+
+    .project-gallery-item:first-child {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .project-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .project-title-main {
+      font-size: 1.5rem;
+    }
+
+    .project-actions {
+      flex-direction: column;
+    }
+
+    .project-btn {
+      width: 100%;
+    }
+  }
+
+  /* Contact */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  body.dark .contact-item {
+    border-color: var(--border-dark);
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.25rem;
+  }
+
+  /* Remove ALL underlines - COMPLETE FIX */
+  #profile-content * {
+    text-decoration: none !important;
+  }
+
+  #profile-content a,
+  #profile-content a:hover,
+  #profile-content a:focus,
+  #profile-content a:active,
+  #profile-content a:visited {
+    text-decoration: none !important;
+  }
+
+  .accordion-content *,
+  .timeline *,
+  .contact-item *,
+  .project-content *,
+  .hero-description *,
+  .timeline-title *,
+  .timeline-desc *,
+  .info-value *,
+  .info-item * {
+    text-decoration: none !important;
+  }
+
+  .accordion-content a,
+  .timeline a,
+  .contact-item a,
+  .project-content a {
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+  }
+
+  .accordion-content a:hover,
+  .timeline a:hover,
+  .contact-item a:hover {
+    text-decoration: none !important;
+    opacity: 0.8;
+    transform: translateX(3px);
+  }
+
+  /* Force remove underline from all text elements */
+  #profile-content strong,
+  #profile-content b,
+  #profile-content em,
+  #profile-content i,
+  #profile-content span,
+  #profile-content div,
+  #profile-content p,
+  #profile-content h1,
+  #profile-content h2,
+  #profile-content h3,
+  #profile-content h4,
+  #profile-content h5,
+  #profile-content h6,
+  .timeline-title,
+  .timeline-desc,
+  .accordion-content strong,
+  .accordion-content div,
+  .accordion-content span {
+    text-decoration: none !important;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+
+  .badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .badge.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+
+  /* Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .info-item {
+    padding: 1rem;
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .info-value {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  #profile-footer {
+    padding: 3rem 0;
+    text-align: center;
+    opacity: 0.7;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Enhanced Animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .timeline-item {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .skill-item {
+    animation: scaleIn 0.4s ease-out;
+    animation-fill-mode: both;
+  }
+
+  .skill-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .skill-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .skill-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .skill-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .skill-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .skill-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  .project-card {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+  }
+
+  .project-card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .project-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  /* Shimmer effect for skill items */
+  .skill-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  .skill-item:hover::before {
+    left: 100%;
+  }
+
+  .skill-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Glow effect on hover */
+  .project-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(37, 99, 235, 0.1),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .project-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Progress bar for skills */
+  .skill-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+
+  .skill-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6);
+    border-radius: 2px;
+    transition: width 1s ease-out;
+    width: 0;
+  }
+
+  .skill-item:hover .skill-progress-bar {
+    width: 100%;
+  }
+
+  /* Photo Gallery Styles */
+  .photo-gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .photo-gallery-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+  }
+
+  .photo-gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 1rem;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .photo-gallery-item:hover .photo-caption {
+    transform: translateY(0);
+  }
+
+  body.dark .photo-gallery-item {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  body.dark .photo-gallery-item:hover {
+    box-shadow: 0 12px 32px rgba(139, 92, 246, 0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .quick-nav {
+      position: static;
+      flex-direction: row;
+      justify-content: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-avatar {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-gallery-item {
+      margin-bottom: 1rem;
+    }
+
+    .photo-gallery-item img {
+      height: 180px;
+    }
+
+    .photo-caption {
+      transform: translateY(0);
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.4)
+      );
+    }
+  }
+
+  /* ========== FINAL OVERRIDE - REMOVE ALL UNDERLINES ========== */
+  /* This must be at the end to override any other styles */
+  #profile-content *,
+  #profile-content a,
+  #profile-content a *,
+  #profile-content strong,
+  #profile-content b,
+  #profile-content span,
+  #profile-content div,
+  .accordion *,
+  .accordion-content *,
+  .timeline *,
+  .timeline-item *,
+  .timeline-title *,
+  .timeline-desc *,
+  .hero-description *,
+  .project-desc *,
+  .info-item *,
+  .info-value *,
+  .contact-item * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+  }
+
+  /* Remove underline from all states */
+  #profile-content a:link,
+  #profile-content a:visited,
+  #profile-content a:hover,
+  #profile-content a:active,
+  #profile-content a:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+  }
+</style>
+
+<div id="profile-content">
+  <!-- Quick Navigation -->
+  <div class="quick-nav">
+    <a href="#about" class="quick-link">📋 Giới thiệu</a>
+    <a href="#skills" class="quick-link">💻 Kỹ năng</a>
+    <a href="#projects" class="quick-link">🚀 Dự án</a>
+    <a href="#contact" class="quick-link">📧 Liên hệ</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-label">{{ .Params.jobtitle }}</span>
+        <h1>{{ .Title }}</h1>
+        <p class="hero-description">
+          Sinh viên năm cuối ngành Công nghệ Thông tin tại Đại học Công nghệ
+          TP.HCM, chuyên sâu về Full-stack Development với .NET Core, AI/ML và
+          Mobile. Đam mê giải quyết vấn đề phức tạp thông qua công nghệ, với
+          kinh nghiệm thực tế từ các dự án AI Computer Vision và nền tảng quản
+          lý.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> Liên hệ
+          </a>
+          <a href="#projects" class="btn btn-secondary">
+            <i class="fas fa-briefcase"></i> Xem dự án
+          </a>
+        </div>
+      </div>
+      <div class="hero-avatar">
         {{ if .Params.avatar }}
-          <div class="relative inline-block">
-            <img
-              src="/BlogDinhCongMinh/profile/{{ .Params.avatar }}"
-              alt="Ảnh đại diện {{ .Title }}"
-              class="w-24 h-24 mx-auto rounded-full border-2 border-gray-200"
-            />
-            <div
-              class="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs px-2 py-1 rounded-full"
-            >
-              Available
+        <img
+          src="/BlogDinhCongMinh/profile/{{ .Params.avatar }}"
+          alt="{{ .Title }}"
+        />
+        {{ end }}
+        <div class="status-badge"><i class="fas fa-circle"></i> Available</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">Giới Thiệu</h2>
+
+    <div class="accordion active">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-graduation-cap accordion-icon"></i>
+          Học vấn
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content" style="max-height: 200px">
+        <div class="accordion-content-inner">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2022 - Hiện tại</div>
+              <div class="timeline-title">Cử nhân Công nghệ Thông tin</div>
+              <div class="timeline-desc">Đại học Công nghệ TP.HCM</div>
             </div>
           </div>
-        {{ end }}
-        <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-          {{ .Title | emojify }}
-        </h1>
-        <p class="mt-1 text-md sm:text-lg text-gray-600">
-          {{ with .Params.jobtitle }}{{ . }}{{ else }}Chưa có chức danh{{ end }}
-        </p>
-        <div class="flex justify-center mt-2">
-          
         </div>
-        {{ if .Params.showBreadcrumbs | default (site.Params.article.showBreadcrumbs | default false) }}
-          {{ partial "breadcrumbs.html" . }}
-        {{ end }}
-        
-      </header>
+      </div>
+    </div>
 
-      {{/* Body */}}
-      <section class="mt-0 prose dark:prose-invert mx-auto text-center">
-        <div class="article-content mb-20">
-          {{ .Content }}
-          {{ $defaultReplyByEmail := site.Params.replyByEmail }}
-          {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
-          {{ if $replyByEmail }}
-            <strong class="block mt-8 text-center">
-              <a
-                target="_blank"
-                class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-                href="mailto:{{ site.Params.Author.email }}?subject={{ replace (printf "Reply to %s" .Title) "\"" "'" }}">
-                Reply by Email
-              </a>
-            </strong>
-          {{ end }}
+    <div class="accordion active">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-briefcase accordion-icon"></i>
+          Kinh nghiệm
         </div>
-        {{ partial "series/series-closed.html" . }}
-        {{ partial "sharing-links.html" . }}
-        {{ partial "related.html" . }}
-      </section>
-
-      {{/* Footer */}}
-      <footer class="pt-8 text-center print:hidden">
-        {{ partial "article-pagination.html" . }}
-        {{ if .Params.showComments | default (site.Params.article.showComments | default false) }}
-          {{ if templates.Exists "partials/comments.html" }}
-            <div class="pt-3">
-              <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
-              <div class="pt-3">
-                {{ partial "comments.html" . }}
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content" style="max-height: 400px">
+        <div class="accordion-content-inner">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">04/2024 - 12/2025</div>
+              <div class="timeline-title">
+                <i
+                  class="fas fa-code"
+                  style="color: var(--accent); margin-right: 0.5rem"
+                ></i>
+                Software Development Intern
+              </div>
+              <div class="timeline-desc" style="margin-bottom: 0.5rem">
+                <strong>Beta Cinemar</strong> - Phát triển ứng dụng web với .NET
+                Core
+              </div>
+              <div class="timeline-desc" style="margin-left: 1rem">
+                • Phát triển RESTful APIs với ASP.NET Core 8<br />
+                • Tối ưu hóa database queries và performance<br />
+                • Làm việc theo phương pháp Agile/Scrum<br />
+                • Code review và mentoring junior developers<br />
+                • Tích hợp third-party services và APIs
               </div>
             </div>
-          {{ else }}
-            {{ warnf "[BLOWFISH] Comments are enabled for %s but no comments partial exists." .File.Path }}
-          {{ end }}
-        {{ end }}
-      </footer>
-    </article>
-  </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(16, 185, 129, 0.1);
+              border-radius: 8px;
+              border-left: 3px solid #10b981;
+            "
+          >
+            <strong style="color: #10b981">
+              <i class="fas fa-chart-line"></i> Thành tựu:
+            </strong>
+            <div style="margin-top: 0.5rem; opacity: 0.9">
+              Cải thiện performance hệ thống lên 40%, giảm thời gian response
+              API xuống 50%, và đóng góp vào 5+ features chính của sản phẩm.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-trophy accordion-icon"></i>
+          Thành tích & Cuộc thi
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2025</div>
+              <div class="timeline-title">
+                IT Code War 2025<span class="badge">Tham gia</span>
+              </div>
+              <div class="timeline-desc">
+                Cuộc thi lập trình - Giải pháp tối ưu đa chiều trong thời gian
+                giới hạn
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                Tư duy Logic Toán học<span class="badge success"
+                  >🏆 Giải 3</span
+                >
+              </div>
+              <div class="timeline-desc">
+                Top 3 - Phát triển kỹ năng giải quyết vấn đề phức tạp và tư duy
+                logic
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                Gen Z Thinking 2024<span class="badge">Tham gia</span>
+              </div>
+              <div class="timeline-desc">
+                Cuộc thi tư duy sáng tạo dành cho thế hệ Gen Z
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                Database Design 2024<span class="badge">Tham gia</span>
+              </div>
+              <div class="timeline-desc">
+                Thiết kế cơ sở dữ liệu - Tối ưu dữ liệu và cấu trúc hiệu quả
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                IQ Toán Học<span class="badge">Tham gia</span>
+              </div>
+              <div class="timeline-desc">Cuộc thi IQ và tư duy toán học</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                My First Website 2024<span class="badge">Tham gia</span>
+              </div>
+              <div class="timeline-desc">
+                Cuộc thi thiết kế website đầu tiên
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-certificate accordion-icon"></i>
+          Chứng chỉ & Năng lực
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <div class="info-grid">
+            <div class="info-item" style="border-left-color: #3b82f6">
+              <div class="info-label">Ngoại ngữ</div>
+              <div class="info-value">
+                <i class="fas fa-language" style="color: var(--accent)"></i>
+                TOEIC B1 - 84/100
+              </div>
+            </div>
+            <div class="info-item" style="border-left-color: #10b981">
+              <div class="info-label">Kỹ năng mềm</div>
+              <div class="info-value">
+                <i class="fas fa-comments" style="color: #10b981"></i>
+                Giao tiếp: 9.0/10
+              </div>
+            </div>
+            <div class="info-item" style="border-left-color: #f59e0b">
+              <div class="info-label">Teamwork</div>
+              <div class="info-value">
+                <i class="fas fa-users" style="color: #f59e0b"></i>
+                Làm việc nhóm: 9.0/10
+              </div>
+            </div>
+            <div class="info-item" style="border-left-color: #8b5cf6">
+              <div class="info-label">Technical</div>
+              <div class="info-value">
+                <i class="fab fa-microsoft" style="color: #8b5cf6"></i>
+                .NET Specialist
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(139, 92, 246, 0.1);
+              border-radius: 8px;
+              border-left: 3px solid #8b5cf6;
+            "
+          >
+            <strong style="color: #8b5cf6">
+              <i class="fas fa-award"></i> Certifications:
+            </strong>
+            <div style="margin-top: 0.5rem; opacity: 0.9">
+              • Microsoft Certified: .NET Developer<br />
+              • AI & Machine Learning Fundamentals<br />
+              • Cloud Computing Essentials (Azure)<br />
+              • Agile & Scrum Master Certification
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-heart accordion-icon"></i>
+          Đời sống cá nhân
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content" style="max-height: 800px">
+        <div class="accordion-content-inner">
+          <!-- Photo Gallery -->
+          <div
+            style="
+              margin-bottom: 2rem;
+              padding: 1.5rem;
+              background: linear-gradient(
+                135deg,
+                rgba(37, 99, 235, 0.05),
+                rgba(139, 92, 246, 0.05)
+              );
+              border-radius: 12px;
+              border: 1px solid rgba(37, 99, 235, 0.1);
+            "
+          >
+            <h3
+              style="
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--accent);
+              "
+            >
+              <i class="fas fa-camera"></i>
+              Khoảnh khắc cuộc sống
+            </h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+              "
+            >
+              <div class="photo-gallery-item">
+                <img
+                  src="/BlogDinhCongMinh/profile/images/dabong.jpg"
+                  alt="Hoạt động thể thao - Đá bóng"
+                />
+                <div class="photo-caption">
+                  <div style="font-weight: 600; font-size: 0.875rem">
+                    ⚽ Đá bóng cuối tuần
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      margin-top: 0.25rem;
+                      opacity: 0.9;
+                    "
+                  >
+                    Hoạt động thể thao với bạn bè
+                  </div>
+                </div>
+              </div>
+
+              <div class="photo-gallery-item">
+                <img
+                  src="/BlogDinhCongMinh/profile/images/docsach.jpg"
+                  alt="Đọc sách và học tập"
+                />
+                <div class="photo-caption">
+                  <div style="font-weight: 600; font-size: 0.875rem">
+                    📚 Đọc sách công nghệ
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      margin-top: 0.25rem;
+                      opacity: 0.9;
+                    "
+                  >
+                    Học hỏi và phát triển bản thân
+                  </div>
+                </div>
+              </div>
+
+              <div class="photo-gallery-item">
+                <img
+                  src="/BlogDinhCongMinh/profile/images/relax.jpg"
+                  alt="Thư giãn và giải trí"
+                />
+                <div class="photo-caption">
+                  <div style="font-weight: 600; font-size: 0.875rem">
+                    🎵 Thư giãn cùng âm nhạc
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      margin-top: 0.25rem;
+                      opacity: 0.9;
+                    "
+                  >
+                    Cân bằng cuộc sống và công việc
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">Sở thích</div>
+              <div class="info-value">⚽ Đá bóng</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Hoạt động</div>
+              <div class="info-value">📚 Đọc sách công nghệ</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Thư giãn</div>
+              <div class="info-value">🎵 Nghe nhạc</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Coding</div>
+              <div class="info-value">💻 Side Projects</div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(37, 99, 235, 0.05);
+              border-radius: 8px;
+            "
+          >
+            <div
+              style="
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+              "
+            >
+              <i class="fas fa-futbol" style="color: var(--accent)"></i>
+              Lịch trình đá bóng
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">Thứ 7 hàng tuần</div>
+                <div class="timeline-title">Sân bóng Đại học Công nghệ</div>
+                <div class="timeline-desc">
+                  17:00 - 19:00 | Giao lưu cùng bạn bè
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">Chủ nhật</div>
+                <div class="timeline-title">Câu lạc bộ Địa phương</div>
+                <div class="timeline-desc">
+                  08:00 - 10:00 | Luyện tập và thi đấu
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2 class="section-title">Kỹ Năng</h2>
+
+    <div class="accordion active">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-server accordion-icon"></i>
+          Backend Development
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content" style="max-height: 500px">
+        <div class="accordion-content-inner">
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fab fa-microsoft"></i>
+              <div class="skill-name">C# .NET</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-code"></i>
+              <div class="skill-name">ASP.NET Core</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-node-js"></i>
+              <div class="skill-name">Node.js</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-database"></i>
+              <div class="skill-name">SQL Server</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-leaf"></i>
+              <div class="skill-name">MongoDB</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-fire"></i>
+              <div class="skill-name">Firebase</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(37, 99, 235, 0.05);
+              border-radius: 8px;
+              border-left: 3px solid var(--accent);
+            "
+          >
+            <strong>Kinh nghiệm:</strong> 3+ năm phát triển backend với .NET
+            ecosystem, thiết kế RESTful APIs, microservices architecture và
+            database optimization.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion active">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-palette accordion-icon"></i>
+          Frontend Development
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content" style="max-height: 500px">
+        <div class="accordion-content-inner">
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fab fa-js"></i>
+              <div class="skill-name">JavaScript</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-react"></i>
+              <div class="skill-name">React</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-html5"></i>
+              <div class="skill-name">HTML/CSS</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-bootstrap"></i>
+              <div class="skill-name">Bootstrap</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-vuejs"></i>
+              <div class="skill-name">Vue.js</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-sass"></i>
+              <div class="skill-name">Sass/SCSS</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(37, 99, 235, 0.05);
+              border-radius: 8px;
+              border-left: 3px solid var(--accent);
+            "
+          >
+            <strong>Chuyên môn:</strong> Xây dựng UI/UX responsive, modern
+            design với animation effects, state management (Redux, Context API)
+            và performance optimization.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <i class="fas fa-tools accordion-icon"></i>
+          Tools & Technologies
+        </div>
+        <i class="fas fa-chevron-down accordion-toggle"></i>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fab fa-git-alt"></i>
+              <div class="skill-name">Git/GitHub</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fab fa-docker"></i>
+              <div class="skill-name">Docker</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-brain"></i>
+              <div class="skill-name">AI/ML</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-mobile-alt"></i>
+              <div class="skill-name">Flutter</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-cloud"></i>
+              <div class="skill-name">Azure Cloud</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-project-diagram"></i>
+              <div class="skill-name">Agile/Scrum</div>
+              <div class="skill-progress">
+                <div class="skill-progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 1rem;
+              background: rgba(37, 99, 235, 0.05);
+              border-radius: 8px;
+              border-left: 3px solid var(--accent);
+            "
+          >
+            <strong>Công cụ thành thạo:</strong> Visual Studio, VS Code,
+            Postman, Azure DevOps, Figma, và các công cụ CI/CD pipeline.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Dự Án Nổi Bật</h2>
+
+    <div class="projects-container">
+      <!-- Project 1: AI Missing Person Finder -->
+      <div class="project-showcase">
+        <div class="project-header">
+          <h3 class="project-title-main">
+            <i class="fas fa-robot" style="color: var(--accent)"></i>
+            AI Missing Person Finder
+          </h3>
+          <p class="project-subtitle">
+            Hệ thống tìm kiếm người mất tích thông minh sử dụng AI Computer
+            Vision, nhận diện khuôn mặt với độ chính xác cao và OCR trích xuất
+            thông tin tự động
+          </p>
+        </div>
+
+        <div class="project-body">
+          <!-- Gallery -->
+          <div class="project-gallery">
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/timnguoithatlac.png"
+                alt="Giao diện tìm kiếm người mất tích"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/hinhanhtimkiem.png"
+                alt="Kết quả tìm kiếm với AI"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/trangprofile.png"
+                alt="Trang thông tin profile"
+              />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="project-info">
+            <!-- Features -->
+            <div class="project-features">
+              <h4><i class="fas fa-star"></i> Tính năng chính</h4>
+              <ul>
+                <li>Nhận diện khuôn mặt với AI Face Recognition</li>
+                <li>OCR trích xuất thông tin từ CCCD/CMT tự động</li>
+                <li>
+                  So khớp thông minh đa tiêu chí (tuổi, giới tính, địa điểm)
+                </li>
+                <li>Real-time notifications với SignalR</li>
+                <li>Quản lý hồ sơ và tracking tiến độ tìm kiếm</li>
+              </ul>
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <h4
+                style="
+                  font-size: 1rem;
+                  font-weight: 600;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <i class="fas fa-code"></i> Tech Stack
+              </h4>
+              <div class="project-tech-stack">
+                <span class="tech-badge">ASP.NET Core 8</span>
+                <span class="tech-badge">Face-API.js</span>
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">SignalR</span>
+                <span class="tech-badge">Azure Cloud</span>
+                <span class="tech-badge">Bootstrap 5</span>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="project-stats">
+              <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Độ chính xác</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">2.5s</div>
+                <div class="stat-label">Thời gian xử lý</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Hồ sơ</div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="project-actions">
+              <a
+                href="https://github.com/Hannie1812/DoAnCoSo_3.0"
+                target="_blank"
+                class="project-btn project-btn-primary"
+              >
+                <i class="fab fa-github"></i>
+                View Source Code
+              </a>
+              <a href="#" class="project-btn project-btn-secondary">
+                <i class="fas fa-play-circle"></i>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: PetCare Smart Platform -->
+      <div class="project-showcase">
+        <div class="project-header">
+          <h3 class="project-title-main">
+            <i class="fas fa-paw" style="color: #10b981"></i>
+            PetCare Smart Platform
+          </h3>
+          <p class="project-subtitle">
+            Nền tảng quản lý và chăm sóc thú cưng toàn diện với booking system,
+            AI chatbot tư vấn sức khỏe và marketplace dịch vụ chuyên nghiệp
+          </p>
+        </div>
+
+        <div class="project-body">
+          <!-- Gallery -->
+          <div class="project-gallery">
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/pet_1.png"
+                alt="Dashboard PetCare"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/pet_2.png"
+                alt="Booking system"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/pet_3.png"
+                alt="AI Chatbot"
+              />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="project-info">
+            <!-- Features -->
+            <div class="project-features">
+              <h4><i class="fas fa-star"></i> Tính năng chính</h4>
+              <ul>
+                <li>Hệ thống booking lịch khám cho thú cưng</li>
+                <li>AI Chatbot tư vấn sức khỏe 24/7</li>
+                <li>Quản lý hồ sơ y tế điện tử chi tiết</li>
+                <li>Marketplace dịch vụ chăm sóc và phụ kiện</li>
+                <li>Nhắc nhở lịch tiêm phòng và khám định kỳ</li>
+              </ul>
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <h4
+                style="
+                  font-size: 1rem;
+                  font-weight: 600;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <i class="fas fa-code"></i> Tech Stack
+              </h4>
+              <div class="project-tech-stack">
+                <span class="tech-badge">.NET Core 8</span>
+                <span class="tech-badge">React 18</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Redis Cache</span>
+                <span class="tech-badge">AI Chatbot</span>
+                <span class="tech-badge">TailwindCSS</span>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="project-stats">
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Người dùng</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">1.2K</div>
+                <div class="stat-label">Lịch hẹn</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Hài lòng</div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="project-actions">
+              <a href="#" class="project-btn project-btn-primary">
+                <i class="fab fa-github"></i>
+                View Source Code
+              </a>
+              <a href="#" class="project-btn project-btn-secondary">
+                <i class="fas fa-external-link-alt"></i>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: MusicWave Flutter App -->
+      <div class="project-showcase">
+        <div class="project-header">
+          <h3 class="project-title-main">
+            <i class="fas fa-music" style="color: #f59e0b"></i>
+            MusicWave - Flutter Music App
+          </h3>
+          <p class="project-subtitle">
+            Ứng dụng nghe nhạc hiện đại được xây dựng bằng Flutter, hỗ trợ
+            streaming, offline mode và quản lý playlist thông minh
+          </p>
+        </div>
+
+        <div class="project-body">
+          <!-- Gallery -->
+          <div class="project-gallery">
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/phatbaihat.png"
+                alt="Giao diện phát nhạc"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/flutter_danhsach.png"
+                alt="Danh sách bài hát"
+              />
+            </div>
+            <div class="project-gallery-item">
+              <img
+                src="/BlogDinhCongMinh/profile/images/tinhnangphatnhac.png"
+                alt="Tính năng phát nhạc"
+              />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="project-info">
+            <!-- Features -->
+            <div class="project-features">
+              <h4><i class="fas fa-star"></i> Tính năng chính</h4>
+              <ul>
+                <li>Streaming nhạc trực tuyến từ JSON Server</li>
+                <li>Chế độ shuffle (ngẫu nhiên) và repeat (lặp lại)</li>
+                <li>Quản lý playlist - tạo, thêm, xóa, lưu local</li>
+                <li>Phát nền và notification controls</li>
+                <li>Lưu trạng thái bài hát đang phát</li>
+              </ul>
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <h4
+                style="
+                  font-size: 1rem;
+                  font-weight: 600;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <i class="fas fa-code"></i> Tech Stack
+              </h4>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Flutter</span>
+                <span class="tech-badge">Dart</span>
+                <span class="tech-badge">just_audio</span>
+                <span class="tech-badge">audio_service</span>
+                <span class="tech-badge">sqflite</span>
+                <span class="tech-badge">http/dio</span>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="project-stats">
+              <div class="stat-item">
+                <div class="stat-number">300+</div>
+                <div class="stat-label">Bài hát</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Playlists</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Uptime</div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="project-actions">
+              <a href="#" class="project-btn project-btn-primary">
+                <i class="fab fa-github"></i>
+                View Source Code
+              </a>
+              <a href="#" class="project-btn project-btn-secondary">
+                <i class="fab fa-google-play"></i>
+                Download APK
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overall Stats -->
+    <div
+      style="
+        margin-top: 3rem;
+        text-align: center;
+        padding: 3rem 2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.05),
+          rgba(139, 92, 246, 0.05)
+        );
+        border-radius: 16px;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+      "
+    >
+      <h3 style="margin-bottom: 2rem; color: var(--accent); font-size: 1.5rem">
+        <i class="fas fa-chart-line"></i> Thành Tích Tổng Quan
+      </h3>
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 2rem;
+          max-width: 900px;
+          margin: 0 auto;
+        "
+      >
+        <div>
+          <div
+            style="
+              font-size: 3rem;
+              font-weight: 700;
+              color: var(--accent);
+              margin-bottom: 0.5rem;
+            "
+          >
+            10+
+          </div>
+          <div style="font-size: 1rem; font-weight: 600; opacity: 0.8">
+            Dự án hoàn thành
+          </div>
+          <div style="font-size: 0.875rem; opacity: 0.6; margin-top: 0.25rem">
+            Full-stack & AI Projects
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-size: 3rem;
+              font-weight: 700;
+              color: #10b981;
+              margin-bottom: 0.5rem;
+            "
+          >
+            15K+
+          </div>
+          <div style="font-size: 1rem; font-weight: 600; opacity: 0.8">
+            Lines of Code
+          </div>
+          <div style="font-size: 0.875rem; opacity: 0.6; margin-top: 0.25rem">
+            Clean & Maintainable
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-size: 3rem;
+              font-weight: 700;
+              color: #f59e0b;
+              margin-bottom: 0.5rem;
+            "
+          >
+            20+
+          </div>
+          <div style="font-size: 1rem; font-weight: 600; opacity: 0.8">
+            Technologies
+          </div>
+          <div style="font-size: 0.875rem; opacity: 0.6; margin-top: 0.25rem">
+            Frontend & Backend
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-size: 3rem;
+              font-weight: 700;
+              color: #8b5cf6;
+              margin-bottom: 0.5rem;
+            "
+          >
+            3+
+          </div>
+          <div style="font-size: 1rem; font-weight: 600; opacity: 0.8">
+            Years Experience
+          </div>
+          <div style="font-size: 0.875rem; opacity: 0.6; margin-top: 0.25rem">
+            Professional Development
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Liên Hệ</h2>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 0.25rem">Email</div>
+          <a
+            href="mailto:dinhminh4424@gmail.com"
+            style="color: var(--accent); text-decoration: none"
+          >
+            dinhminh4424@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 0.25rem">Điện thoại</div>
+          <a
+            href="tel:0776117577"
+            style="color: var(--accent); text-decoration: none"
+          >
+            0776 117 577
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 0.25rem">GitHub</div>
+          <a
+            href="https://github.com/dinhminh4424"
+            target="_blank"
+            style="color: var(--accent); text-decoration: none"
+          >
+            dinhminh4424
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <i class="fab fa-facebook"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 0.25rem">Facebook</div>
+          <a
+            href="https://www.facebook.com/inhminh.196020"
+            target="_blank"
+            style="color: var(--accent); text-decoration: none"
+          >
+            Đinh Công Minh
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<div id="profile-footer">
+  <p>
+    © 2025 {{ .Title }}. Designed with
+    <i class="fas fa-heart" style="color: var(--accent)"></i>
+  </p>
+</div>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById("themeToggle");
+  const body = document.body;
+  const icon = themeToggle.querySelector("i");
+
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark");
+    icon.classList.replace("fa-moon", "fa-sun");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    if (body.classList.contains("dark")) {
+      icon.classList.replace("fa-moon", "fa-sun");
+      localStorage.setItem("theme", "dark");
+    } else {
+      icon.classList.replace("fa-sun", "fa-moon");
+      localStorage.setItem("theme", "light");
+    }
+  });
+
+  // Accordion Toggle
+  function toggleAccordion(header) {
+    const accordion = header.parentElement;
+    const content = accordion.querySelector(".accordion-content");
+    const isActive = accordion.classList.contains("active");
+
+    if (isActive) {
+      accordion.classList.remove("active");
+      content.style.maxHeight = "0";
+    } else {
+      accordion.classList.add("active");
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  }
+
+  // Smooth Scroll
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 100,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  // Initialize accordion heights
+  document.querySelectorAll(".accordion.active").forEach((accordion) => {
+    const content = accordion.querySelector(".accordion-content");
+    content.style.maxHeight = content.scrollHeight + "px";
+  });
+
+  // Scroll Animation Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+
+        // Animate skill progress bars
+        const progressBars = entry.target.querySelectorAll(
+          ".skill-progress-bar"
+        );
+        progressBars.forEach((bar) => {
+          const width = bar.style.width;
+          bar.style.width = "0";
+          setTimeout(() => {
+            bar.style.width = width;
+          }, 100);
+        });
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.querySelectorAll("section").forEach((section) => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(30px)";
+    section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    scrollObserver.observe(section);
+  });
+
+  // Counter Animation
+  function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        element.textContent =
+          target + (element.textContent.includes("+") ? "+" : "");
+        clearInterval(timer);
+      } else {
+        element.textContent =
+          Math.floor(start) + (element.textContent.includes("+") ? "+" : "");
+      }
+    }, 16);
+  }
+
+  // Animate stats when visible
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const value = entry.target.textContent;
+          const number = parseInt(value.replace(/\D/g, ""));
+          animateCounter(entry.target, number);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  document.querySelectorAll('[style*="font-size: 2rem"]').forEach((stat) => {
+    if (stat.textContent.match(/\d+/)) {
+      statsObserver.observe(stat);
+    }
+  });
+
+  // Add hover sound effect (optional - commented out)
+  // document.querySelectorAll('.skill-item, .project-card').forEach(item => {
+  //   item.addEventListener('mouseenter', () => {
+  //     // Add subtle hover feedback
+  //     item.style.transform = 'scale(1.02)';
+  //   });
+  //   item.addEventListener('mouseleave', () => {
+  //     item.style.transform = 'scale(1)';
+  //   });
+  // });
+
+  // Parallax effect for hero avatar
+  const avatar = document.querySelector(".hero-avatar img");
+  if (avatar) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * 0.3;
+      avatar.style.transform = `translateY(${rate}px)`;
+    });
+  }
+
+  // Add ripple effect on button clicks
+  document
+    .querySelectorAll(".btn, .btn-primary, .btn-secondary")
+    .forEach((button) => {
+      button.addEventListener("click", function (e) {
+        const ripple = document.createElement("span");
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+        ripple.style.position = "absolute";
+        ripple.style.borderRadius = "50%";
+        ripple.style.background = "rgba(255, 255, 255, 0.5)";
+        ripple.style.transform = "scale(0)";
+        ripple.style.animation = "ripple 0.6s ease-out";
+        ripple.style.pointerEvents = "none";
+
+        this.style.position = "relative";
+        this.style.overflow = "hidden";
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+  // Add ripple animation
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
 {{ end }}

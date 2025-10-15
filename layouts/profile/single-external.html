@@ -1,0 +1,183 @@
+{{ define "main" }} {{/* Alternative Portfolio Template - External CSS/JS
+Version This version uses separate CSS and JS files for easier maintenance To
+use this template instead of the inline version: 1. Rename this file to
+single.html (backup the original first) 2. OR change the layout in
+content/profile/thong-tin.md front matter */}}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ .Title }} - {{ .Params.jobtitle }}" />
+    <meta
+      name="keywords"
+      content="portfolio, developer, full-stack, .NET, AI, web development"
+    />
+    <meta name="author" content="{{ .Title }}" />
+    <title>{{ .Title }} - Portfolio</title>
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Custom Portfolio Styles -->
+    {{ $style := resources.Get "css/portfolio-style.css" }} {{ if $style }} {{
+    $style := $style | resources.Minify | resources.Fingerprint }}
+    <link
+      rel="stylesheet"
+      href="{{ $style.RelPermalink }}"
+      integrity="{{ $style.Data.Integrity }}"
+    />
+    {{ end }}
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+      <canvas id="particles"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">{{ .Title }}</div>
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Trang chủ</a></li>
+          <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+          <li><a href="#skills" class="nav-link">Kỹ năng</a></li>
+          <li><a href="#portfolio" class="nav-link">Dự án</a></li>
+          <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem; align-items: center">
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+          <div class="hero-text" data-aos="fade-right">
+            <h1 class="gradient-text">{{ .Title }}</h1>
+            <p class="subtitle">{{ .Params.jobtitle }}</p>
+            <p class="description">
+              Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc. Với niềm
+              đam mê công nghệ và sự chỉn chu trong từng dòng code, tôi tạo ra
+              những sản phẩm không chỉ đẹp mà còn hiệu quả.
+            </p>
+            <div class="cta-buttons">
+              <a href="#contact" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Liên hệ ngay
+              </a>
+              <a href="#portfolio" class="btn btn-secondary">
+                <i class="fas fa-briefcase"></i> Xem dự án
+              </a>
+            </div>
+            <div class="social-links" style="margin-top: 2rem">
+              <a
+                href="https://github.com/dinhminh4424"
+                target="_blank"
+                class="social-link"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/inhminh.196020"
+                target="_blank"
+                class="social-link"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="mailto:dinhminh4424@gmail.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+              </a>
+              <a href="tel:0776117577" class="social-link">
+                <i class="fas fa-phone"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-avatar" data-aos="fade-left">
+            <div class="avatar-container">
+              <div class="avatar-ring"></div>
+              <div class="avatar-img">
+                {{ if .Params.avatar }}
+                <img
+                  src="/BlogDinhCongMinh/profile/{{ .Params.avatar }}"
+                  alt="{{ .Title }}"
+                  loading="eager"
+                />
+                {{ end }}
+              </div>
+              <div class="status-badge">
+                <i
+                  class="fas fa-circle"
+                  style="color: #10b981; font-size: 0.5rem"
+                ></i>
+                Available for Work
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Additional sections would go here -->
+      <!-- For brevity, using the same content structure as the inline version -->
+
+      <!-- You can include the rest of the sections here -->
+      <!-- Or use Hugo partials for better organization -->
+    </main>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom Portfolio Scripts -->
+    {{ $script := resources.Get "js/portfolio-script.js" }} {{ if $script }} {{
+    $script := $script | resources.Minify | resources.Fingerprint }}
+    <script
+      src="{{ $script.RelPermalink }}"
+      integrity="{{ $script.Data.Integrity }}"
+    ></script>
+    {{ end }}
+  </body>
+</html>
+{{ end }}

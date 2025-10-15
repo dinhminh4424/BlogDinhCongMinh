@@ -53,7 +53,6 @@ Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc
 {{< keywordList >}}
 {{< keyword >}} Lập trình OOP {{< /keyword >}}
 {{< keyword >}} Cơ sở dữ liệu {{< /keyword >}}
-{{< keyword >}} AI & Machine Learning {{< /keyword >}}
 {{< keyword >}} Web Development {{< /keyword >}}
 {{< /keywordList >}}
 {{< /timelineItem >}}
@@ -71,7 +70,7 @@ Chuyển đổi ý tưởng thành giải pháp công nghệ xuất sắc
 {{< chart >}}
 type: 'radar',
 data: {
-labels: ['C#/.NET', 'Python/AI', 'Frontend', 'Database', 'Mobile', 'Cloud'],
+labels: ['C#/.NET', 'Python', 'Frontend', 'Database', 'Mobile', 'Cloud'],
 datasets: [{
 label: 'Mức độ thành thạo',
 data: [90, 80, 75, 85, 70, 65],
@@ -153,6 +152,12 @@ suggestedMax: 100
 {{< /alert >}}
 
 {{< github repo="Hannie1812/DoAnCoSo_3.0" >}}
+{{< gallery >}}
+<img src="/BlogDinhCongMinh/profile/images/timnguoithatlac.png" class="grid-w50" alt="PetCare Dashboard" />
+<img src="/BlogDinhCongMinh/profile/images/hinhanhtimkiem.png" class="grid-w50" alt="Vet Booking" />
+<img src="/BlogDinhCongMinh/profile/images/trangprofile.png" class="grid-w50" alt="PetCare Dashboard" />
+
+{{< /gallery >}}
 
 **Quy trình hoạt động:**
 {{< timeline >}}
@@ -194,6 +199,40 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 }
 {{< /chart >}}
 
+### MusicWave — Ứng dụng nghe nhạc Flutter
+
+MusicWave là ứng dụng nghe nhạc được xây dựng bằng **Flutter**, cho phép người dùng nghe nhạc trực tuyến từ **JSON Server**, phát ngẫu nhiên, lặp lại và quản lý playlist. Ứng dụng hướng tới sự **nhẹ, nhanh, dễ mở rộng**.
+
+---
+
+{{< gallery >}}
+<img src="/BlogDinhCongMinh/profile/images/flutter_danhsach.png" class="grid-w50" alt="PetCare Dashboard" />
+<img src="/BlogDinhCongMinh/profile/images/phatbaihat.png" class="grid-w50" alt="Vet Booking" />
+<img src="/BlogDinhCongMinh/profile/images/tinhnangphatnhac.png" class="grid-w50" alt="PetCare Dashboard" />
+
+{{< /gallery >}}
+
+## ✨ Tính năng chính
+
+- Phát nhạc trực tuyến từ JSON Server
+- Phát / Tạm dừng / Bài trước / Bài tiếp
+- **Shuffle** (ngẫu nhiên) & **Repeat** (lặp)
+- Quản lý playlist — tạo, thêm, xóa, lưu local
+- Hiển thị thông tin bài hát (ảnh bìa, tên, nghệ sĩ)
+- Lưu trạng thái bài hát đang phát
+
+---
+
+## 🧩 Công nghệ sử dụng
+
+- **Flutter (Dart)** — xây dựng giao diện & logic
+- **just_audio** — phát nhạc
+- **audio_service** — phát nền & notification
+- **http / dio** — kết nối JSON Server
+- **sqflite / shared_preferences** — lưu cục bộ
+
+---
+
 ## Kinh nghiệm chuyên môn
 
 {{< timeline >}}
@@ -221,8 +260,9 @@ backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
 {{< keyword icon="certificate" >}} **TOEIC B1** - 84/100 {{< /keyword >}}
 {{< keyword icon="comments" >}} **Kỹ năng Giao tiếp** - 9.0/10 {{< /keyword >}}
 {{< keyword icon="users" >}} **Làm việc Nhóm** - 9.0/10 {{< /keyword >}}
-{{< keyword icon="microsoft" >}} **.NET Certification** {{< /keyword >}}
-{{< keyword icon="robot" >}} **AI Fundamentals** {{< /keyword >}}
+{{< keyword icon="microsoft" >}} **JavaScript Essentials 1** {{< /keyword >}}
+{{< keyword icon="microsoft" >}} **JavaScript Essentials 2** {{< /keyword >}}
+{{< keyword icon="robot" >}} **Networking Basics** {{< /keyword >}}
 {{< /keywordList >}}
 
 ---

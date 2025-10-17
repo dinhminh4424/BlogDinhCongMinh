@@ -4,7 +4,7 @@ date: 2025-09-29T23:41:00+07:00
 draft: false
 layout: profile/single
 avatar: "images/MINH-3.jpg"
-jobtitle: "Lập trình viên Full-stack | .NET & AI Enthusiast"
+jobtitle: "Lập trình viên Full-stack"
 ---
 
 {{< typeit tag=h1 speed=70 lifeLike=true startDelay=500 >}}

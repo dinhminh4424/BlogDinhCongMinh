@@ -1,0 +1,53 @@
+# Menu chính (header)
+[[main]]
+  name = "Trang chủ"
+  url = "/"
+  weight = 1
+
+[[main]]
+  name = "Bài viết"
+  url = "/posts/"
+  weight = 2
+
+
+[[main]]
+  name = "Danh Mục"
+  url = "/categories/"
+  weight = 3
+
+[[main]]
+  name = "Thẻ"
+  url = "/tags/"
+  weight = 4
+
+[[main]]
+  name = "Thông tin"
+  url = "/profile/thong-tin"
+  weight = 5
+
+# Menu footer
+[[footer]]
+  name = "Giới thiệu"
+  url = "/profile/"
+  weight = 1
+
+[[footer]]
+  name = "Bài viết chia sẽ"
+  url = "/posts/"
+  weight = 2
+
+[[footer]]
+  name = "Danh mục "
+  url = "/categories/"
+  weight = 3
+
+[[footer]]
+  name = "Thẻ"
+  url = "/tags/"
+  weight = 4
+
+[[footer]]
+  name = "Liên hệ"
+  url = "/contact/"
+  weight = 5
+

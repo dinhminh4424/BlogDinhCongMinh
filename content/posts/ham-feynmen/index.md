@@ -8,38 +8,13 @@ showTableOfContents: true
 featuredImage: "images/function_in_js.png" # ảnh bài viết chi tiết
 ---
 
-# Hiểu Biết Hàm Trong JavaScript (Phương Pháp Feynman)
-
 Hàm trong JavaScript giống như những **cỗ máy nhỏ** bạn tạo ra để làm một việc cụ thể, như tính toán, in lời chào, hoặc xử lý dữ liệu. Hãy tưởng tượng tôi đang kể chuyện cho một người bạn chưa biết gì về lập trình. Tôi sẽ dùng ví dụ đời thường, chia nhỏ từng khái niệm, và vẽ một bức tranh tổng thể để bạn dễ hình dung.
-
----
-
-## Mục lục
-
-- Hàm là gì?
-- Tại sao sử dụng hàm?
-- Khai báo hàm
-- Gọi hàm
-- Biến cục bộ trong hàm
-- Câu lệnh return
-- Tham số (Parameters)
-- Shadowing
-- Kiểm tra tham số (Parameters Validation)
-- Đệ quy (Recursion)
-- Hàm như thành viên hạng nhất (First-class Citizens)
-- Biểu thức hàm (Function Expressions)
-- Callbacks
-- Callbacks bất đồng bộ (Asynchronous Callbacks)
-- setTimeout và setInterval
-- Arrow Functions
-- Kết luận và mẹo sử dụng
-- Tài liệu tham khảo
 
 ---
 
 ## 1. Hàm là gì?
 
-**Hình ảnh đời thường**: Hãy nghĩ về hàm như một **máy xay sinh tố** trong bếp. Bạn bỏ nguyên liệu vào (như chuối, sữa), máy xay làm việc, và cho ra sinh tố. Hàm trong JavaScript cũng vậy: nó nhận **đầu vào** (nếu có), làm gì đó, và trả **đầu ra** (nếu cần).
+Hãy nghĩ về hàm như một **máy xay sinh tố** trong bếp. Bạn bỏ nguyên liệu vào (như chuối, sữa), máy xay làm việc, và cho ra sinh tố. Hàm trong JavaScript cũng vậy: nó nhận **đầu vào** (nếu có), làm gì đó, và trả **đầu ra** (nếu cần).
 ![alt text](ham_vd.png)
 **Giải thích đơn giản**:
 
@@ -62,7 +37,7 @@ chaoHoi(); // In: Xin chào!
 
 ## 2. Tại sao sử dụng hàm?
 
-**Hình ảnh đời thường**: Tưởng tượng bạn phải lau nhà 10 lần một ngày. Thay vì lấy chổi, xô, nước mỗi lần, bạn chuẩn bị một **bộ dụng cụ lau nhà** và chỉ cần lấy ra dùng. Hàm giống bộ dụng cụ: làm một lần, dùng nhiều lần.
+Tưởng tượng bạn phải lau nhà 10 lần một ngày. Thay vì lấy chổi, xô, nước mỗi lần, bạn chuẩn bị một **bộ dụng cụ lau nhà** và chỉ cần lấy ra dùng. Hàm giống bộ dụng cụ: làm một lần, dùng nhiều lần.
 
 **Giải thích đơn giản**:
 
@@ -107,7 +82,7 @@ console.log("Trung bình ngày 2: " + tinhTrungBinh(day2));
 
 ## 3. Khai báo hàm
 
-**Hình ảnh đời thường**: Viết công thức làm bánh vào sổ và đặt tên là "Làm Bánh Chuối". Mỗi lần cần, bạn mở sổ và làm theo. Khai báo hàm giống như viết công thức và đặt tên.
+Viết công thức làm bánh vào sổ và đặt tên là "Làm Bánh Chuối". Mỗi lần cần, bạn mở sổ và làm theo. Khai báo hàm giống như viết công thức và đặt tên.
 
 **Giải thích đơn giản**:
 
@@ -133,7 +108,7 @@ function chaoHoi(ten) {
 
 ## 4. Gọi hàm
 
-**Hình ảnh đời thường**: Khi bạn muốn làm bánh, bạn mở sổ và làm theo công thức. Gọi hàm giống như mở sổ và chạy công thức đó.
+Khi bạn muốn làm bánh, bạn mở sổ và làm theo công thức. Gọi hàm giống như mở sổ và chạy công thức đó.
 
 **Giải thích đơn giản**:
 
@@ -155,7 +130,7 @@ for (let i = 1; i <= 3; i++) {
 
 ## 5. Biến cục bộ trong hàm
 
-**Hình ảnh đời thường**: Khi làm bánh trong bếp, bạn dùng bát, đĩa riêng trong bếp đó. Xong việc, bạn rửa sạch, không ảnh hưởng đến bát đĩa ở phòng khách. Biến cục bộ giống bát đĩa trong bếp: chỉ dùng trong hàm.
+Khi làm bánh trong bếp, bạn dùng bát, đĩa riêng trong bếp đó. Xong việc, bạn rửa sạch, không ảnh hưởng đến bát đĩa ở phòng khách. Biến cục bộ giống bát đĩa trong bếp: chỉ dùng trong hàm.
 
 **Giải thích đơn giản**:
 
@@ -178,7 +153,7 @@ tinhTong(); // In: 15
 
 ## 6. Câu lệnh return
 
-**Hình ảnh đời thường**: Máy xay sinh tố sau khi xay xong thì đổ sinh tố ra cốc (kết quả). `return` giống như đổ kết quả ra cho người gọi hàm.
+Máy xay sinh tố sau khi xay xong thì đổ sinh tố ra cốc (kết quả). `return` giống như đổ kết quả ra cho người gọi hàm.
 
 **Giải thích đơn giản**:
 
@@ -200,7 +175,7 @@ console.log(ketQua); // In: 16
 
 ## 7. Tham số (Parameters)
 
-**Hình ảnh đời thường**: Khi làm bánh, công thức yêu cầu "2 quả trứng, 100g đường". Trứng và đường là **tham số**, bạn đưa vào khi làm bánh. Tham số giống nguyên liệu bạn đưa vào hàm.
+Khi làm bánh, công thức yêu cầu "2 quả trứng, 100g đường". Trứng và đường là **tham số**, bạn đưa vào khi làm bánh. Tham số giống nguyên liệu bạn đưa vào hàm.
 
 **Giải thích đơn giản**:
 
@@ -221,7 +196,7 @@ console.log(cong(5, 3)); // In: 8
 
 ## 8. Shadowing
 
-**Hình ảnh đời thường**: Trong bếp, bạn có một lọ "đường" riêng, không liên quan đến lọ "đường" ở phòng khách. Biến trong hàm có thể trùng tên với biến ngoài hàm, nhưng chúng **riêng biệt**.
+Trong bếp, bạn có một lọ "đường" riêng, không liên quan đến lọ "đường" ở phòng khách. Biến trong hàm có thể trùng tên với biến ngoài hàm, nhưng chúng **riêng biệt**.
 
 **Giải thích đơn giản**:
 
@@ -243,7 +218,7 @@ console.log(x); // In: 100 (không bị thay đổi)
 
 ## 9. Kiểm tra tham số (Parameters Validation)
 
-**Hình ảnh đời thường**: Trước khi làm bánh, bạn kiểm tra xem có đủ trứng không, trứng có tươi không. Kiểm tra tham số giống như kiểm nguyên liệu trước khi chạy hàm.
+Trước khi làm bánh, bạn kiểm tra xem có đủ trứng không, trứng có tươi không. Kiểm tra tham số giống như kiểm nguyên liệu trước khi chạy hàm.
 
 **Giải thích đơn giản**:
 
@@ -271,7 +246,7 @@ console.log(tinhTrungBinh([10, 20, 30])); // In: 20
 
 ## 10. Đệ quy (Recursion)
 
-**Hình ảnh đời thường**: Bạn chia một thanh chocolate lớn thành các mảnh nhỏ hơn, mỗi lần chia bạn gọi lại chính mình để chia mảnh nhỏ hơn nữa, cho đến khi không chia được. Đệ quy là hàm gọi lại chính nó với vấn đề nhỏ hơn.
+Bạn chia một thanh chocolate lớn thành các mảnh nhỏ hơn, mỗi lần chia bạn gọi lại chính mình để chia mảnh nhỏ hơn nữa, cho đến khi không chia được. Đệ quy là hàm gọi lại chính nó với vấn đề nhỏ hơn.
 
 **Giải thích đơn giản**:
 
@@ -304,7 +279,7 @@ giaiThua(6)
 
 ## 11. Hàm như thành viên hạng nhất (First-class Citizens)
 
-**Hình ảnh đời thường**: Hàm giống như một món đồ bạn có thể cất vào hộp (biến), đưa cho người khác (truyền đối số), hoặc tạo ra từ máy khác (trả về từ hàm). Hàm được đối xử như bất kỳ giá trị nào (số, chuỗi).
+Hàm giống như một món đồ bạn có thể cất vào hộp (biến), đưa cho người khác (truyền đối số), hoặc tạo ra từ máy khác (trả về từ hàm). Hàm được đối xử như bất kỳ giá trị nào (số, chuỗi).
 
 **Giải thích đơn giản**:
 
@@ -345,7 +320,7 @@ console.log(dem()); // In: 2
 
 ## 12. Biểu thức hàm (Function Expressions)
 
-**Hình ảnh đời thường**: Thay vì viết công thức làm bánh vào sổ lớn, bạn ghi vào tờ giấy nhỏ và dán lên tủ lạnh. Biểu thức hàm là hàm được gán vào biến, như tờ giấy.
+Thay vì viết công thức làm bánh vào sổ lớn, bạn ghi vào tờ giấy nhỏ và dán lên tủ lạnh. Biểu thức hàm là hàm được gán vào biến, như tờ giấy.
 
 **Giải thích đơn giản**:
 
@@ -371,7 +346,7 @@ console.log(tru(20, 10)); // In: 10
 
 ## 13. Callbacks
 
-**Hình ảnh đời thường**: Bạn nhờ bạn bè đi siêu thị mua đồ, dặn khi mua xong thì gọi lại để báo. Callback là hàm bạn đưa cho hàm khác, để nó gọi lại khi xong việc.
+Bạn nhờ bạn bè đi siêu thị mua đồ, dặn khi mua xong thì gọi lại để báo. Callback là hàm bạn đưa cho hàm khác, để nó gọi lại khi xong việc.
 
 **Giải thích đơn giản**:
 
@@ -398,7 +373,7 @@ xuLy(function () {
 
 ## 14. Callbacks bất đồng bộ (Asynchronous Callbacks)
 
-**Hình ảnh đời thường**: Bạn nhờ bạn bè mua đồ, nhưng không đứng đợi mà đi làm việc khác. Khi bạn bè mua xong, họ gọi lại. Callback bất đồng bộ chạy khi một việc (như tải dữ liệu) hoàn thành, không theo thứ tự mã.
+Bạn nhờ bạn bè mua đồ, nhưng không đứng đợi mà đi làm việc khác. Khi bạn bè mua xong, họ gọi lại. Callback bất đồng bộ chạy khi một việc (như tải dữ liệu) hoàn thành, không theo thứ tự mã.
 
 **Giải thích đơn giản**:
 
@@ -426,7 +401,7 @@ xuLyAsync(function () {
 
 ## 15. setTimeout và setInterval
 
-**Hình ảnh đời thường**: `setTimeout` giống như đặt đồng hồ báo thức để gọi bạn dậy sau 5 phút. `setInterval` giống đồng hồ kêu liên tục mỗi 5 phút cho đến khi bạn tắt.
+`setTimeout` giống như đặt đồng hồ báo thức để gọi bạn dậy sau 5 phút. `setInterval` giống đồng hồ kêu liên tục mỗi 5 phút cho đến khi bạn tắt.
 
 **Giải thích đơn giản**:
 
@@ -436,6 +411,7 @@ xuLyAsync(function () {
 **Ví dụ code**:
 
 ```javascript
+// setInterval: Chạy lặp lại 5 lần, mỗi giây dừng bằng clearInterval
 function batDongHo() {
   let count = 0;
   let id = setInterval(function () {
@@ -446,11 +422,21 @@ function batDongHo() {
 batDongHo(); // In: Tick 1, Tick 2, ..., Tick 5 (mỗi tick cách 1s)
 ```
 
+```javascript
+// setTimeout: Chạy một lần sau 3 giây
+setTimeout(() => {
+  console.log("Báo thức! Đã đến giờ dậy rồi ");
+}, 3000); // sau 3 giây
+
+// (Bạn đợi 3 giây)
+// Báo thức! Đã đến giờ dậy rồi
+```
+
 ---
 
 ## 16. Arrow Functions
 
-**Hình ảnh đời thường**: Arrow function giống như viết công thức làm bánh ngắn gọn trên một tờ giấy nhỏ, thay vì sổ lớn. Nó gọn hơn nhưng không thay đổi cách làm bánh.
+Arrow function giống như viết công thức làm bánh ngắn gọn trên một tờ giấy nhỏ, thay vì sổ lớn. Nó gọn hơn nhưng không thay đổi cách làm bánh.
 
 **Giải thích đơn giản**:
 

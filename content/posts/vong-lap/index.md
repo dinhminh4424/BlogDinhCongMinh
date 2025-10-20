@@ -1,5 +1,5 @@
 ---
-title: "Vòng Lập"
+title: "Vòng Lập (Loops)"
 date: "2025-09-23T01:11:33+07:00"
 draft: false
 categories: ["Lập trình"]
@@ -8,30 +8,8 @@ showTableOfContents: true
 featuredImage: "images/anhnen_loop.png"
 ---
 
-# Vòng lặp (Loops) — Toàn tập, cực kỳ chi tiết
-
 ![Ảnh 1](images/anhnen_loop.png)
-**Mục tiêu:** chương này trình bày chi tiết mọi loại vòng lặp trong JavaScript, ví dụ thực tế, anti-patterns, so sánh, hiệu suất, các lỗi thường gặp và bài tập có lời giải. File này định dạng Markdown để dễ copy vào tài liệu hoặc website.
-
----
-
-## Mục lục
-
-1. [Giới thiệu chung](#1-giới-thiệu-chung)
-2. [while](#2-while)
-3. [do...while](#3-do--while)
-4. [for (cổ điển)](#4-for-cổ-điển)
-5. [for...of](#5-forof)
-6. [for...in](#6-forin)
-7. [Các phương thức lặp của mảng (functional)](#7-các-phương-thức-lặp-của-mảng-functional)
-8. [break / continue / label](#8-break--continue--label)
-9. [Vòng lặp lồng nhau & tối ưu hóa](#9-vòng-lặp-lồng-nhau--tối-ưu-hóa)
-10. [Xóa/Chỉnh sửa phần tử khi lặp](#10-xóachỉnh-sửa-phần-tử-khi-lặp)
-11. [Async trong vòng lặp: tuần tự vs song song](#11-async-trong-vòng-lặp-tuần-tự-vs-song-song)
-12. [Generators / Iterators (nhắc qua)](#12-generators--iterators-nhắc-qua)
-13. [Hiệu suất & best practices](#13-hiệu-suất--best-practices)
-14. [Debugging vòng lặp](#14-debugging-vòng-lặp)
-15. [Tóm tắt nhanh](#15-tóm-tắt-nhanh)
+**Mục tiêu:** chương này trình bày chi tiết mọi loại vòng lặp trong JavaScript, ví dụ thực tế, anti-patterns, so sánh, hiệu suất, các lỗi thường gặp và bài tập có lời giải.
 
 ---
 
@@ -62,7 +40,7 @@ while (condition) {
 
 ### 2.2 Nguyên lý
 
-- Kiểm tra `condition` trước mỗi lần lặp.
+- Kiểm tra `condition` điều kiện trước mỗi lần lặp.
 - Nếu `true` → chạy body → quay lại kiểm tra.
 - Nếu `false` → không chạy body lần nào (nếu ban đầu false).
 
@@ -104,7 +82,7 @@ while (i < 3) {
 }
 ```
 
-**Cách debug:** thêm `console.log`, breakpoint; đảm bảo biến thay đổi. Tránh `while(true)` không có break trừ khi cần thiết (server loops).
+**Cách debug:** thêm `console.log`, breakpoint; đảm bảo biến thay đổi. Tránh `while(true)` **không** có **break** trừ khi cần thiết (server loops).
 
 ### Pattern: sentinel loop
 
@@ -181,7 +159,7 @@ for (let j = 0; j < 3; j++) {}
 console.log(typeof j); // undefined (j không tồn tại ngoài block)
 ```
 
-**Lời khuyên:** luôn dùng `let`/`const` trong vòng lặp.
+**Lời khuyên:** luôn dùng `let`/`const`(for ... of) trong vòng lặp.
 
 ### 4.5 Closure trong loop (bẫy phổ biến)
 
@@ -189,7 +167,7 @@ console.log(typeof j); // undefined (j không tồn tại ngoài block)
 for (var i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 100);
 }
-// prints 3,3,3 (because var i shared)
+// Kết quả: 3,3,3 (vì var i dùng chung sau vòng lập i = 3)
 
 // Fix 1: dùng let
 for (let i = 0; i < 3; i++) {
@@ -198,9 +176,13 @@ for (let i = 0; i < 3; i++) {
 
 // Fix 2: IIFE
 for (var i = 0; i < 3; i++) {
+  // Mỗi vòng lặp sẽ tạo ra một hàm mới.
+  // Tham số (i) truyền vào là bản sao của giá trị i ở vòng đó.
   (function (i) {
     setTimeout(() => console.log(i), 100);
   })(i);
+
+  // => Mỗi hàm IIFE có biến i riêng biệt trong scope riêng của nó.
 }
 ```
 
@@ -249,8 +231,27 @@ for (const v of s) console.log(v);
 ### 5.4 for...of vs forEach vs for (classic)
 
 - `for...of` hỗ trợ `break`, `continue` và `await` (tuần tự) — rất phù hợp để gọi async tuần tự.
+
+```js
+for (const item of [1, 2, 3]) {
+  if (item === 2) continue;
+  console.log(item); // 1, 3
+}
+```
+
 - `forEach` **không** dừng bằng `break` (không hỗ trợ await tuần tự).
+
+```js
+[1, 2, 3].forEach((item) => console.log(item));
+```
+
 - `for` cổ điển phù hợp khi cần index hoặc nâng cấp hiệu năng vi mô.
+
+```js
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}
+```
 
 ### 5.5 Destructuring với for...of (Map entries)
 
@@ -383,6 +384,11 @@ outer: for (let i = 0; i < 3; i++) {
     console.log(i, j);
   }
 }
+// Kết quả:
+// 0 0
+// 0 1
+// 0 2
+// 1 0
 ```
 
 **Cẩn trọng**: labelled break/continue làm code khó đọc; chỉ dùng khi thực sự cần.
@@ -470,53 +476,52 @@ for (let idx of toRemove.reverse()) arr.splice(idx, 1);
 
 ```js
 urls.forEach(async (url) => {
-  const res = await fetch(url); // won't await in outer scope
+  const res = await fetch(url); //  sẽ không chờ ở ngoài
 });
-// not awaited
+console.log("Xong!");
+// In ra "Xong!" ngay lập tức, dù các fetch() còn đang chạy.
 ```
 
 ### 11.2 Thực thi tuần tự (order important)
 
+Chờ hoàn thành toàn bộ bước hiện tại rồi mới tiếp tục sang bước kế tiếp.
+
 ```js
+const urls = ["https://example.com/file1.txt", "https://example.com/file2.txt"];
+
 for (const url of urls) {
   const res = await fetch(url);
   console.log(await res.text());
 }
+console.log("Tất cả đã xong!");
+
+// Nội dung file1.txt
+// Nội dung file2.txt
+// Tất cả đã xong!
 ```
 
 ### 11.3 Thực thi song song (tất cả cùng lúc, chờ tất cả)
 
 ```js
+const urls = [
+  "https://example.com/a.txt",
+  "https://example.com/b.txt",
+  "https://example.com/c.txt",
+];
+
 const promises = urls.map((url) => fetch(url));
 const results = await Promise.all(promises);
-```
 
-### 11.4Throttling / giới hạn concurrency
-
-Dùng p-limit hoặc queue custom:
-
-```js
-// simple concurrency limit example
-async function limitedFetch(urls, limit = 5) {
-  const results = [];
-  const executing = [];
-  for (const url of urls) {
-    const p = fetch(url)
-      .then((r) => r.text())
-      .then((t) => results.push(t));
-    executing.push(p);
-    if (executing.length >= limit) await Promise.race(executing);
-    // remove finished promises
-    for (let i = executing.length - 1; i >= 0; i--) {
-      if (executing[i].resolved) executing.splice(i, 1);
-    }
-  }
-  await Promise.all(executing);
-  return results;
+for (const res of results) {
+  console.log(await res.text());
 }
-```
 
-(Ở production, dùng thư viện như p-limit, bottleneck, hoặc implement queue rõ ràng.)
+// Nội dung file A
+// Nội dung file B
+// Nội dung file C
+
+// => Tất cả request đều chạy song song → nhanh hơn nhiều so với for...of + await.
+```
 
 ---
 
@@ -536,39 +541,29 @@ console.log(g.next().value); // 2
 
 ---
 
-## 13. Hiệu suất & best practices (tổng hợp)
+## 13. Tóm tắt nhanh
 
-- **Prefer clarity** over micro-optimizations. Modern JS engines rất giỏi tối ưu.
-- Nếu loop lớn (vài triệu iter), cân nhắc:
-  - Giảm work trong loop (cache properties, avoid function calls inside tight loops).
-  - Avoid DOM ops inside loop: build fragment then append once.
-  - Use typed arrays for numeric heavy loops.
-  - Use Web Worker cho CPU-bound tasks.
-- **Cache length** (ít cần thiết hiện nay):
-  ```js
-  for (let i = 0, len = arr.length; i < len; i++) { ... }
-  ```
-- **Avoid creating functions inside tight loops** (allocation).
-- **Use appropriate data structures**: Set/Map cho lookup O(1).
-- Batch operations where possible to reduce overhead.
+## Tổng hợp các loại vòng lặp trong JavaScript
+
+| Loại vòng lặp                               | Đặc điểm chính                                                                  | Khi nên dùng                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **`while`**                                 | Kiểm tra điều kiện **trước khi chạy** (`check-first`)                           | Khi chưa biết trước số lần lặp                              |
+| **`do...while`**                            | Chạy **ít nhất 1 lần** rồi mới kiểm tra (`run-first`)                           | Khi cần thực thi ít nhất 1 lần                              |
+| **`for`**                                   | Dựa trên **chỉ số (index)**                                                     | Khi cần kiểm soát số vòng hoặc truy cập mảng theo chỉ số    |
+| **`for...of`**                              | Duyệt **giá trị** của iterable (array, string, map, set)                        | Khi cần đọc giá trị, hỗ trợ `await`, `break`, `continue`    |
+| **`for...in`**                              | Duyệt **key** của object                                                        | Khi cần duyệt thuộc tính (nhớ dùng `hasOwnProperty`)        |
+| **`forEach` / `map` / `filter` / `reduce`** | Cú pháp **hàm bậc cao (functional)**                                            | Khi cần viết ngắn gọn, dễ đọc; không dừng được bằng `break` |
+| **Xóa phần tử**                             | Lặp ngược (`for (let i = arr.length - 1; i >= 0; i--)`) hoặc dùng `filter()`    | Để tránh lỗi khi thay đổi mảng khi đang lặp                 |
+| **Bất đồng bộ (async)**                     | `for...of` + `await` → chạy **tuần tự**<br>`Promise.all()` → chạy **song song** | Chọn tùy mục đích: cần thứ tự hay tốc độ                    |
 
 ---
 
-## 14. Debugging vòng lặp
+## Ghi nhớ nhanh:
 
-- `console.time('loop')` / `console.timeEnd('loop')` để đo.
-- Step-debugging với breakpoints.
-- Nếu infinite loop: thêm guard `if (++safety > 1e7) throw new Error('infinite?');` (debug only).
-
-## 15. Tóm tắt nhanh
-
-- `while`: check-first.
-- `do...while`: run-first then check.
-- `for`: index-based scenarios.
-- `for...of`: iterate values of iterable, supports await and break.
-- `for...in`: iterate keys of object (use with hasOwnProperty).
-- `forEach`/`map`/`filter`/`reduce`: functional, idiomatic.
-- Delete elements: loop backwards or filter.
-- Async: `for...of` + await (sequential), `Promise.all` (parallel).
-
-## Flowcharts (minh họa)
+> `while` – kiểm tra trước  
+> `do...while` – chạy trước rồi kiểm tra  
+> `for` – theo chỉ số  
+> `for...of` – theo giá trị  
+> `for...in` – theo key  
+> `forEach` – không dừng/await được  
+> `async` – tuần tự (`for...of`), song song (`Promise.all`)

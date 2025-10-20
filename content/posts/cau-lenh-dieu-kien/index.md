@@ -8,22 +8,9 @@ showTableOfContents: true
 featuredImage: "images/anh-nen_caulenhcodieukien.jpg" # ảnh bài viết chi tiết
 ---
 
-# Câu lệnh có điều kiện trong JavaScript
-
 Câu lệnh điều kiện (conditional statements) giúp chương trình đưa ra quyết định, thực thi các nhánh code khác nhau dựa trên điều kiện đúng (`true`) hoặc sai (`false`). Bài viết này trình bày các loại câu lệnh điều kiện trong JavaScript, bao gồm ### Cú pháp, ví dụ minh họa, và sơ đồ luồng.
 
 ![Ảnh 1](images/anh-nen_caulenhcodieukien.jpg)
-
-## Mục lục
-
-1. [Câu lệnh có điều kiện là gì?](#cau-lenh-dieu-kien-la-gi)
-2. [Boolean, Truthy và Falsy](#boolean-truthy-va-falsy)
-3. [Câu lệnh `if`](#cau-lenh-if)
-4. [Câu lệnh `if ... else`](#cau-lenh-if-else)
-5. [Câu lệnh `if ... else if`](#cau-lenh-if-else-if)
-6. [Toán tử ba ngôi](#toan-tu-ba-ngoi)
-7. [Câu lệnh `switch ... case`](#cau-lenh-switch-case)
-8. [So sánh `if ... else if` và `switch ... case`](#so-sanh-if-else-if-va-switch-case)
 
 ## 1. Câu lệnh có điều kiện là gì?
 
@@ -275,7 +262,7 @@ Chưa đủ tuổi lái xe
 
 ## 7. Câu lệnh `switch ... case`
 
-![Ảnh 6](images/i_sww.png)
+![Ảnh 6](images/i_switch.png)
 
 Dùng để kiểm tra một biến với nhiều giá trị cụ thể, gọn gàng hơn khi có nhiều nhánh.
 

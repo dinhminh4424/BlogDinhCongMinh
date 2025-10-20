@@ -8,32 +8,15 @@ showTableOfContents: true
 featuredImage: "images/object_in_s.png" # ảnh bài viết chi tiết
 ---
 
-# Hiểu Biết Đối Tượng Trong JavaScript (Phương Pháp Feynman)
-
 Đối tượng trong JavaScript giống như một **túi đồ** trong đời thực: bạn có thể bỏ nhiều thứ vào (như chìa khóa, điện thoại, ví tiền) và mỗi thứ có tên để lấy ra dễ dàng.
 
 ![Ảnh 1](images/i_obj.png)
-
-## Mục lục
-
-- Đối tượng là gì?
-- Tại sao sử dụng đối tượng?
-- Cách tạo đối tượng
-- Truy cập và sửa đổi thuộc tính
-- Phương thức trong đối tượng
-- Vòng lặp qua đối tượng
-- Sao chép đối tượng
-- Từ khóa `this`
-- Prototype và kế thừa
-- JSON và đối tượng
-- Kết luận và mẹo sử dụng
-- Tài liệu tham khảo
 
 ---
 
 ## 1. Đối tượng là gì?
 
-**Hình ảnh đời thường**: Hãy nghĩ về đối tượng như một **túi đồ** hoặc một **hộp quà**. Trong hộp, bạn có thể để nhiều thứ: một cây bút (gọi là "bút"), một cuốn sổ (gọi là "sổ"), và mỗi thứ có thể lấy ra bằng tên. Đối tượng trong JavaScript cũng vậy: nó chứa nhiều **thuộc tính** (như bút, sổ) và mỗi thuộc tính có **tên** và **giá trị**.
+Hãy nghĩ về đối tượng như một **túi đồ** hoặc một **hộp quà**. Trong hộp, bạn có thể để nhiều thứ: một cây bút (gọi là "bút"), một cuốn sổ (gọi là "sổ"), và mỗi thứ có thể lấy ra bằng tên. Đối tượng trong JavaScript cũng vậy: nó chứa nhiều **thuộc tính** (như bút, sổ) và mỗi thuộc tính có **tên** và **giá trị**.
 
 **Giải thích đơn giản**:
 
@@ -59,7 +42,7 @@ console.log(hocSinh.ten); // In: Tèo
 
 ## 2. Tại sao sử dụng đối tượng?
 
-**Hình ảnh đời thường**: Thay vì để bút, sổ, điện thoại lung tung trên bàn, bạn bỏ vào một túi để dễ quản lý. Đối tượng giúp bạn tổ chức dữ liệu gọn gàng.
+Thay vì để bút, sổ, điện thoại lung tung trên bàn, bạn bỏ vào một túi để dễ quản lý. Đối tượng giúp bạn tổ chức dữ liệu gọn gàng.
 
 **Giải thích đơn giản**:
 
@@ -92,7 +75,7 @@ console.log(hocSinh2.ten); // In: Tý
 
 ## 3. Cách tạo đối tượng
 
-**Hình ảnh đời thường**: Tạo đối tượng giống như làm một túi đồ mới, bạn quyết định bỏ gì vào và đặt tên cho từng món.
+Tạo đối tượng giống như làm một túi đồ mới, bạn quyết định bỏ gì vào và đặt tên cho từng món.
 
 **Giải thích đơn giản**:
 
@@ -146,7 +129,7 @@ console.log(hocSinh3.ten); // In: Lan
 
 ## 4. Truy cập và sửa đổi thuộc tính
 
-**Hình ảnh đời thường**: Bạn mở túi đồ, lấy cây bút ra (truy cập) hoặc bỏ thêm một cuốn sổ vào (sửa đổi). Với đối tượng, bạn dùng tên thuộc tính để lấy hoặc thay đổi giá trị.
+Bạn mở túi đồ, lấy cây bút ra (truy cập) hoặc bỏ thêm một cuốn sổ vào (sửa đổi). Với đối tượng, bạn dùng tên thuộc tính để lấy hoặc thay đổi giá trị.
 
 **Giải thích đơn giản**:
 
@@ -174,7 +157,7 @@ console.log(hocSinh); // In: { ten: "Tèo", tuoi: 16, lop: "10A", diem: 8.5 }
 
 ## 5. Phương thức trong đối tượng
 
-**Hình ảnh đời thường**: Trong túi đồ, ngoài bút và sổ, bạn có thể bỏ vào một **máy tính nhỏ** để tính toán. Phương thức là hàm bên trong đối tượng, giúp đối tượng thực hiện hành động.
+Trong túi đồ, ngoài bút và sổ, bạn có thể bỏ vào một **máy tính nhỏ** để tính toán. Phương thức là hàm bên trong đối tượng, giúp đối tượng thực hiện hành động.
 
 **Giải thích đơn giản**:
 
@@ -199,7 +182,7 @@ console.log(hocSinh.gioiThieu()); // In: Tôi là Tèo, học lớp 10A
 
 ## 6. Vòng lặp qua đối tượng
 
-**Hình ảnh đời thường**: Bạn mở túi đồ và kiểm tra từng món bên trong. Vòng lặp qua đối tượng giống như xem từng thuộc tính để biết giá trị.
+Bạn mở túi đồ và kiểm tra từng món bên trong. Vòng lặp qua đối tượng giống như xem từng thuộc tính để biết giá trị.
 
 **Giải thích đơn giản**:
 
@@ -229,7 +212,7 @@ console.log(Object.entries(hocSinh));
 
 ## 7. Sao chép đối tượng
 
-**Hình ảnh đời thường**: Bạn muốn tạo một túi đồ giống hệt túi cũ, nhưng nếu chỉ trỏ vào túi cũ, thay đổi túi mới sẽ làm hỏng túi cũ. Sao chép đối tượng cần cẩn thận để tránh điều này.
+Bạn muốn tạo một túi đồ giống hệt túi cũ, nhưng nếu chỉ trỏ vào túi cũ, thay đổi túi mới sẽ làm hỏng túi cũ. Sao chép đối tượng cần cẩn thận để tránh điều này.
 
 **Giải thích đơn giản**:
 
@@ -256,7 +239,7 @@ console.log(hocSinh.diem); // In: [7, 9]
 
 ## 8. Từ khóa `this`
 
-**Hình ảnh đời thường**: Trong túi đồ, bạn có một ghi chú nói "Tên của túi này là Tèo". `this` giống ghi chú đó: nó trỏ đến chính đối tượng đang sử dụng.
+Trong túi đồ, bạn có một ghi chú nói "Tên của túi này là Tèo". `this` giống ghi chú đó: nó trỏ đến chính đối tượng đang sử dụng.
 
 **Giải thích đơn giản**:
 
@@ -277,9 +260,9 @@ console.log(hocSinh.gioiThieu()); // In: Tôi là Tèo
 
 ---
 
-## 9. Prototype và kế thừa
+## 9. Prototype
 
-**Hình ảnh đời thường**: Bạn có một túi đồ cơ bản (như bút, sổ). Bạn muốn tạo nhiều túi khác, nhưng mỗi túi có thêm món đặc biệt (như máy tính, thước kẻ). **Prototype** giống như một "bản thiết kế chung" mà các túi khác có thể dùng.
+Bạn có một túi đồ cơ bản (như bút, sổ). Bạn muốn tạo nhiều túi khác, nhưng mỗi túi có thêm món đặc biệt (như máy tính, thước kẻ). **Prototype** giống như một "bản thiết kế chung" mà các túi khác có thể dùng.
 
 **Giải thích đơn giản**:
 
@@ -308,7 +291,7 @@ console.log(hs2.gioiThieu()); // In: Tôi là Tý, 16 tuổi
 
 ## 10. JSON và đối tượng
 
-**Hình ảnh đời thường**: JSON giống như cách bạn viết danh sách đồ trong túi ra giấy để gửi cho bạn bè. Đối tượng có thể chuyển thành JSON và ngược lại.
+JSON giống như cách bạn viết danh sách đồ trong túi ra giấy để gửi cho bạn bè. Đối tượng có thể chuyển thành JSON và ngược lại.
 
 **Giải thích đơn giản**:
 

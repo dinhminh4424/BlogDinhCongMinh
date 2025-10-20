@@ -12,52 +12,11 @@ DOM (Document Object Model) trong JavaScript giống như một **bản đồ ng
 
 ---
 
-## Mục Lục
-
-- 1. DOM là gì?
-  - 1.1. So sánh DOM với trang web thật
-  - 1.2. Cấu trúc cây DOM
-- 2. Tại sao cần DOM?
-  - 2.1. Lợi ích trong phát triển web
-  - 2.2. Ví dụ thực tế (web động, game)
-- 3. Cách truy cập DOM
-  - 3.1. `document` object
-  - 3.2. Các phương thức tìm phần tử
-  - 3.3. Bảng so sánh các phương thức tìm
-- 4. Thao tác với phần tử DOM
-  - 4.1. Truy cập nội dung (text, HTML)
-  - 4.2. Thay đổi thuộc tính (attribute)
-  - 4.3. Thay đổi style (CSS)
-  - 4.4. Thêm/xóa phần tử
-- 5. Xử lý sự kiện (Event Handling)
-  - 5.1. Sự kiện là gì?
-  - 5.2. Các cách thêm sự kiện
-  - 5.3. Ví dụ: Click, input, mouseover
-- 6. Duyệt cây DOM (DOM Traversal)
-  - 6.1. Di chuyển đến cha, con, anh em
-  - 6.2. Ví dụ duyệt cây DOM
-- 7. DOM và hiệu suất
-  - 7.1. Lỗi làm chậm trang
-  - 7.2. Cách tối ưu
-- 8. DOM ảo (Virtual DOM) và so sánh
-  - 8.1. Virtual DOM là gì?
-  - 8.2. So sánh với DOM thật
-- 9. Ứng dụng thực tế
-  - 9.1. Xây dựng todo list động
-  - 9.2. Tạo hiệu ứng hover
-  - 9.3. Form validation
-- 10. Lỗi thường gặp và cách tránh
-  - 10.1. Lỗi truy cập phần tử không tồn tại
-  - 10.2. Lỗi sự kiện lặp lại
-  - 10.3. Lỗi hiệu suất
-- 11. Kết luận và mẹo sử dụng
-- 12. Tài liệu tham khảo
-
 ---
 
 ## 1. DOM là gì?
 
-**Hình ảnh đời thường**: Hãy nghĩ trang web như một **ngôi nhà**, với các phòng là tiêu đề, hình ảnh, nút bấm. DOM là **bản đồ ngôi nhà**, giúp bạn tìm phòng (phần tử HTML), xem đồ đạc (nội dung), sửa đổi (thay màu tường), hoặc thêm phòng mới.
+Hãy nghĩ trang web như một **ngôi nhà**, với các phòng là tiêu đề, hình ảnh, nút bấm. DOM là **bản đồ ngôi nhà**, giúp bạn tìm phòng (phần tử HTML), xem đồ đạc (nội dung), sửa đổi (thay màu tường), hoặc thêm phòng mới.
 
 ![ảnh 1](images/i_dom.png)
 
@@ -121,7 +80,7 @@ document
 
 ## 2. Tại sao cần DOM?
 
-**Hình ảnh đời thường**: Bạn muốn thay đổi màu tường hoặc thêm ghế trong nhà. DOM giống như công cụ cho phép bạn sửa đổi ngôi nhà mà không cần xây lại.
+Bạn muốn thay đổi màu tường hoặc thêm ghế trong nhà. DOM giống như công cụ cho phép bạn sửa đổi ngôi nhà mà không cần xây lại.
 
 ![ảnh 2](images/home.png)
 
@@ -152,7 +111,7 @@ document.getElementById("title").textContent = "Chào mừng bạn!";
 
 ## 3. Cách truy cập DOM
 
-**Hình ảnh đời thường**: Để sửa phòng, bạn phải tìm đúng phòng trong bản đồ. Truy cập DOM là tìm đúng phần tử HTML để thao tác.
+Để sửa phòng, bạn phải tìm đúng phòng trong bản đồ. Truy cập DOM là tìm đúng phần tử HTML để thao tác.
 
 **Giải thích đơn giản**:
 
@@ -217,7 +176,7 @@ allTexts.forEach((p) => console.log(p.textContent)); // In: Đoạn văn 1, Đo�
 
 ## 4. Thao tác với phần tử DOM
 
-**Hình ảnh đời thường**: Khi tìm được phòng, bạn có thể sơn lại tường (style), thay đồ đạc (nội dung), hoặc thêm cửa mới (phần tử).
+Khi tìm được phòng, bạn có thể sơn lại tường (style), thay đồ đạc (nội dung), hoặc thêm cửa mới (phần tử).
 
 **Giải thích đơn giản**:
 
@@ -305,11 +264,11 @@ ul.removeChild(li); // Xóa
 
 ## 5. Xử lý sự kiện (Event Handling)
 
-**Hình ảnh đời thường**: Sự kiện giống như khi bạn nhấn công tắc đèn (click), đèn sáng. DOM cho phép "lắng nghe" hành động người dùng.
+Sự kiện giống như khi bạn nhấn công tắc đèn (click), đèn sáng. DOM cho phép "lắng nghe" hành động người dùng.
 
 **Giải thích đơn giản**:
 
-- Sự kiện: Hành động như click, nhập text, di chuột.
+- Sự kiện: Hành động như click, nhập text, di chuột,...
 - Thêm bằng `addEventListener` hoặc thuộc tính `onclick`.
 
 ### 5.1. Sự kiện là gì?
@@ -353,7 +312,7 @@ box.addEventListener("mouseover", () => {
 
 ## 6. Duyệt cây DOM (DOM Traversal)
 
-**Hình ảnh đời thường**: Duyệt DOM giống như đi bộ trong nhà, từ phòng khách (cha) đến phòng ngủ (con), hoặc sang phòng bên (anh em).
+Duyệt DOM giống như đi bộ trong nhà, từ phòng khách (cha) đến phòng ngủ (con), hoặc sang phòng bên (anh em).
 
 **Giải thích đơn giản**:
 
@@ -395,7 +354,7 @@ console.log(parent.children[0].nextElementSibling.textContent); // In: Đoạn 2
 
 ## 7. DOM và hiệu suất
 
-**Hình ảnh đời thường**: Nếu bạn sơn lại cả ngôi nhà mỗi lần muốn đổi màu một phòng, rất tốn công. Thao tác DOM nhiều lần làm chậm trang.
+Nếu bạn sơn lại cả ngôi nhà mỗi lần muốn đổi màu một phòng, rất tốn công. Thao tác DOM nhiều lần làm chậm trang.
 
 **Giải thích đơn giản**:
 
@@ -435,7 +394,7 @@ document.getElementById("list").appendChild(fragment);
 
 ## 8. DOM ảo (Virtual DOM) và so sánh
 
-**Hình ảnh đời thường**: DOM thật giống sửa nhà trực tiếp (chậm). Virtual DOM giống như vẽ bản sửa đổi trên giấy, rồi áp dụng một lần (nhanh).
+DOM thật giống sửa nhà trực tiếp (chậm). Virtual DOM giống như vẽ bản sửa đổi trên giấy, rồi áp dụng một lần (nhanh).
 
 **Giải thích đơn giản**:
 

@@ -8,81 +8,13 @@ showTableOfContents: true
 featuredImage: "images/class_in_js.png" # ảnh bài viết chi tiết
 ---
 
-# Hiểu Biết Lớp Và Phương Pháp Tiếp Cận Dựa Trên Lớp Trong JavaScript (Phương Pháp Feynman)
-
 Lớp (class) trong JavaScript giống như một **bản thiết kế xe hơi** trong nhà máy: bạn vẽ chi tiết cách lắp ráp (cấu trúc), rồi sản xuất nhiều chiếc xe giống nhau (đối tượng), mỗi chiếc có thể tùy chỉnh (như màu sắc). Tôi sẽ giải thích như kể chuyện cho một người bạn chưa từng học lập trình, dùng nhiều hình ảnh đời thường, ví dụ code cụ thể, bảng so sánh, và flowchart để minh họa. Chúng ta sẽ đi chậm rãi, chia nhỏ thành nhiều phần con, để bạn nắm chắc từng khái niệm. JavaScript vốn dựa trên prototype (mẫu gốc), nhưng class là cách viết hiện đại, dễ hiểu hơn, giống lập trình hướng đối tượng (OOP) cổ điển.
-
----
-
-## Mục Lục
-
-- 1. Lớp là gì? (Định nghĩa cơ bản và lịch sử ngắn gọn)
-  - 1.1. So sánh với đối tượng đơn lẻ
-  - 1.2. Lớp trong ngữ cảnh OOP
-- 2. Tại sao sử dụng lớp? (Lợi ích chi tiết)
-  - 2.1. Ví dụ thực tế trong ứng dụng web/game
-  - 2.2. Bảng so sánh không lớp vs có lớp
-- 3. Khai báo lớp cơ bản
-  - 3.1. Cú pháp chi tiết
-  - 3.2. Hoisting và lưu ý
-- 4. Constructor (hàm tạo) chi tiết
-  - 4.1. Vai trò và cách dùng
-  - 4.2. Ví dụ với tham số mặc định
-  - 4.3. Lỗi thường gặp trong constructor
-- 5. Thuộc tính (properties) trong lớp
-  - 5.1. Instance properties (riêng từng đối tượng)
-  - 5.2. Class properties (chung cho lớp)
-  - 5.3. Bảng so sánh thuộc tính instance vs class
-- 6. Phương thức (methods) trong lớp
-  - 6.1. Instance methods (hành vi riêng)
-  - 6.2. Ví dụ minh họa với nhiều phương thức
-  - 6.3. Sử dụng `this` chi tiết
-- 7. Kế thừa (inheritance) với `extends` và `super`
-  - 7.1. Khái niệm kế thừa
-  - 7.2. Cách dùng `extends`
-  - 7.3. Sử dụng `super` cho constructor và phương thức
-  - 7.4. Override (ghi đè) phương thức
-  - 7.5. Ví dụ đa cấp kế thừa
-- 8. Static methods và properties (tĩnh)
-  - 8.1. Định nghĩa và vai trò
-  - 8.2. Ví dụ static methods
-  - 8.3. Ví dụ static properties
-  - 8.4. Lỗi thường gặp với static
-- 9. Private fields và methods (riêng tư)
-  - 9.1. Tại sao cần private?
-  - 9.2. Cú pháp với `#`
-  - 9.3. Private methods
-  - 9.4. So sánh với convention cũ (\_underscore)
-- 10. Getter và Setter (truy cập kiểm soát)
-  - 10.1. Getter: Lấy giá trị an toàn
-  - 10.2. Setter: Đặt giá trị với validation
-  - 10.3. Ví dụ kết hợp getter/setter với private
-  - 10.4. Lợi ích trong thực tế
-- 11. So sánh với phương pháp prototype-based (cũ)
-  - 11.1. Prototype là gì?
-  - 11.2. Cách viết prototype thủ công
-  - 11.3. Bảng so sánh class vs prototype
-  - 11.4. Class hoạt động bên dưới như thế nào?
-- 12. Các khái niệm nâng cao
-  - 12.1. Computed property names
-  - 12.2. Class expressions
-  - 12.3. Kiểm tra instanceof
-  - 12.4. Mixins (kết hợp lớp)
-- 13. Lỗi thường gặp và cách tránh
-  - 13.1. Lỗi quên `new`
-  - 13.2. Lỗi `this` không đúng ngữ cảnh
-  - 13.3. Vấn đề với kế thừa sâu
-- 14. Ứng dụng thực tế và ví dụ lớn
-  - 14.1. Xây dựng lớp cho game đơn giản
-  - 14.2. Lớp trong ứng dụng web (form validation)
-- 15. Kết luận và mẹo sử dụng
-- 16. Tài liệu tham khảo
 
 ---
 
 ## 1. Lớp là gì? (Định nghĩa cơ bản và lịch sử ngắn gọn)
 
-**Hình ảnh đời thường**: Lớp giống như một **công thức làm bánh kem** trong sách nấu ăn. Công thức chỉ dẫn nguyên liệu (thuộc tính) và cách làm (phương thức). Bạn dùng công thức để làm nhiều cái bánh (đối tượng), mỗi cái có thể thêm topping riêng (tùy chỉnh).
+Lớp giống như một **công thức làm bánh kem** trong sách nấu ăn. Công thức chỉ dẫn nguyên liệu (thuộc tính) và cách làm (phương thức). Bạn dùng công thức để làm nhiều cái bánh (đối tượng), mỗi cái có thể thêm topping riêng (tùy chỉnh).
 
 ![alt text](minhhoalop.png)
 
@@ -141,7 +73,7 @@ Trong OOP, lớp là nền tảng cho 4 trụ cột: đóng gói (encapsulation 
 
 ## 2. Tại sao sử dụng lớp? (Lợi ích chi tiết)
 
-**Hình ảnh đời thường**: Thay vì lắp ráp xe thủ công mỗi lần (dễ lỗi, mất thời gian), bạn dùng bản thiết kế để sản xuất hàng loạt, dễ sửa (chỉ sửa thiết kế).
+Thay vì lắp ráp xe thủ công mỗi lần (dễ lỗi, mất thời gian), bạn dùng bản thiết kế để sản xuất hàng loạt, dễ sửa (chỉ sửa thiết kế).
 
 **Giải thích đơn giản**:
 
@@ -186,7 +118,7 @@ user1.login(); // In: teo@example.com đã đăng nhập.
 
 ## 3. Khai báo lớp cơ bản
 
-**Hình ảnh đời thường**: Viết bản thiết kế: bắt đầu bằng "class TenLop { }", bên trong là chi tiết.
+Viết bản thiết kế: bắt đầu bằng "class TenLop { }", bên trong là chi tiết.
 
 **Giải thích đơn giản**:
 
@@ -216,14 +148,14 @@ Lớp không hoisted đầy đủ: phải khai báo trước khi dùng.
 
 ```javascript
 let hs = new HocSinh(); // Lỗi: HocSinh chưa khai báo
-class HocSinh {}
+class HocSinh {} // phải khai báo class trước mới sử dụng
 ```
 
 ---
 
 ## 4. Constructor (hàm tạo) chi tiết
 
-**Hình ảnh đời thường**: Constructor giống "lắp khung xe" đầu tiên trong nhà máy: đặt màu, động cơ ban đầu.
+Constructor giống "lắp khung xe" đầu tiên trong nhà máy: đặt màu, động cơ ban đầu.
 
 **Giải thích đơn giản**:
 
@@ -253,18 +185,33 @@ console.log(xe.mauSac); // In: trắng
 - Quên `this`: `ten = ten` thay vì `this.ten = ten` (biến cục bộ).
 - Không gọi `super()` trong lớp con.
 
+```javascript
+class XeHoi extends Xe {
+  constructor(ten, mau, tocDo = 100) {
+    super(ten, mau); // Phải gọi constructor lớp cha bằng super()
+    this.tocDo = tocDo;
+  }
+
+  thongTin() {
+    console.log(
+      `Tên: ${this.ten}, Màu: ${this.mau}, Tốc độ: ${this.tocDo} km/h`
+    );
+  }
+}
+```
+
 **Cách tránh**: Luôn dùng `this` cho thuộc tính instance.
 
 ---
 
 ## 5. Thuộc tính (properties) trong lớp
 
-**Hình ảnh đời thường**: Thuộc tính giống "bộ phận xe": bánh xe (chung), màu sơn (riêng từng xe).
+Thuộc tính giống "bộ phận xe": bánh xe (chung), màu sơn (riêng từng xe).
 
 **Giải thích đơn giản**:
 
-- Instance properties: Riêng từng instance, gán trong constructor.
-- Class properties: Chung cho lớp, gán ngoài constructor.
+- Instance properties: Riêng từng instance, gán **_trong_ constructor**.
+- Class properties: Chung cho lớp, gán **_ngoài_ constructor**.
 
 ### 5.1. Instance properties
 
@@ -300,7 +247,7 @@ console.log(xe2.soBanhXe); // In: 4
 
 ## 6. Phương thức (methods) trong lớp
 
-**Hình ảnh đời thường**: Phương thức giống "nút bấm trên xe": nhấn ga để chạy.
+Phương thức giống "nút bấm trên xe": nhấn ga để chạy.
 
 **Giải thích đơn giản**:
 
@@ -341,7 +288,7 @@ console.log(hs.tinhTrungBinh()); // In: 8
 
 ## 7. Kế thừa (inheritance) với `extends` và `super`
 
-**Hình ảnh đời thường**: Kế thừa giống xe điện (con) thừa hưởng khung xe từ xe hơi (cha), thêm pin điện.
+Kế thừa giống xe điện (con) thừa hưởng khung xe từ xe hơi (cha), thêm pin điện.
 
 **Giải thích đơn giản**:
 
@@ -357,13 +304,61 @@ Giảm lặp code, tạo hệ thống phân cấp.
 
 class Con extends Cha { }
 
+```javascript
+class XeDien extends XeHoi {
+  constructor(ten, tocDo, pin) {
+    super(ten, tocDo); // Gọi constructor lớp cha
+    this.pin = pin; // Thuộc tính riêng của lớp con
+  }
+}
+```
+
 ### 7.3. Sử dụng `super` cho constructor và phương thức
 
 `super()` phải gọi trước `this` trong con.
 
+```javascript
+constructor(ten, tocDo, pin) {
+    super(ten, tocDo); // Gọi constructor lớp cha
+    this.pin = pin; // Thuộc tính riêng của lớp con
+  }
+```
+
 ### 7.4. Override (ghi đè) phương thức
 
 Con có thể thay đổi phương thức cha.
+
+```javascript
+class XeHoi {
+  constructor(ten, tocDo) {
+    this.ten = ten;
+    this.tocDo = tocDo;
+  }
+
+  chay() {
+    console.log(`${this.ten} đang chạy ở tốc độ ${this.tocDo} km/h.`);
+  }
+}
+
+class XeDien extends XeHoi {
+  constructor(ten, tocDo, pin) {
+    super(ten, tocDo); // Gọi constructor lớp cha
+    this.pin = pin; // Thuộc tính riêng của lớp con
+  }
+
+  // Ghi đè (override) phương thức chay()
+  chay() {
+    console.log(
+      `${this.ten} chạy êm ái ở tốc độ ${this.tocDo} km/h (điện, pin ${this.pin}%).`
+    );
+  }
+
+  sacPin() {
+    console.log(`${this.ten} đang sạc pin...`);
+    this.pin = 100;
+  }
+}
+```
 
 ### 7.5. Ví dụ đa cấp kế thừa
 
@@ -416,7 +411,7 @@ Override: diChuyen() --> Gọi super.bay()
 
 ## 8. Static methods và properties (tĩnh)
 
-**Hình ảnh đời thường**: Static giống "bảng hướng dẫn" ở nhà máy, dùng chung, không cần sản xuất xe mới.
+Static giống "bảng hướng dẫn" ở nhà máy, dùng chung, không cần sản xuất xe mới.
 
 **Giải thích đơn giản**:
 
@@ -457,11 +452,33 @@ console.log(Dem.soLan); // In: 2
 - Gọi static từ instance: hs.staticMethod() - lỗi.
 - Cách tránh: Luôn gọi từ tên lớp.
 
+```javascript
+class HocSinh {
+  constructor(ten) {
+    this.ten = ten;
+  }
+
+  static chao() {
+    console.log("Xin chào! Tôi là học sinh.");
+  }
+}
+
+let hs = new HocSinh("Minh");
+
+// Sai: gọi static qua instance
+hs.chao();
+// Lỗi: TypeError: hs.chao is not a function
+
+//  Đúng: gọi static qua tên lớp
+HocSinh.chao();
+// → Xin chào! Tôi là học sinh.
+```
+
 ---
 
 ## 9. Private fields và methods (riêng tư)
 
-**Hình ảnh đời thường**: Private giống "két sắt" trong nhà, chỉ chủ nhà mở được.
+Private giống "két sắt" trong nhà, chỉ chủ nhà mở được.
 
 **Giải thích đơn giản**:
 
@@ -514,7 +531,7 @@ console.log(mt.tinh(5)); // In: 25
 
 ## 10. Getter và Setter (truy cập kiểm soát)
 
-**Hình ảnh đời thường**: Getter giống "cửa kính" xem đồ trong két sắt mà không mở. Setter giống "khe nạp tiền" với kiểm tra (chỉ nạp tiền thật).
+Getter giống "cửa kính" xem đồ trong két sắt mà không mở. Setter giống "khe nạp tiền" với kiểm tra (chỉ nạp tiền thật).
 
 **Giải thích đơn giản**:
 
@@ -579,7 +596,7 @@ console.log(tk.soDu); // In: 1000
 
 ## 11. So sánh với phương pháp prototype-based (cũ)
 
-**Hình ảnh đời thường**: Prototype giống "mẫu thủ công" từ giấy, class giống "mẫu in 3D" hiện đại.
+Prototype giống "mẫu thủ công" từ giấy, class giống "mẫu in 3D" hiện đại.
 
 **Giải thích đơn giản**:
 
@@ -593,12 +610,24 @@ Bản mẫu chia sẻ phương thức.
 ### 11.2. Cách viết prototype thủ công
 
 ```javascript
-function XeHoi(mauSac) {
-  this.mauSac = mauSac;
+// Tạo hàm khởi tạo (constructor)
+function XeHoi(ten) {
+  this.ten = ten;
 }
+
+// Gắn phương thức vào prototype
 XeHoi.prototype.chay = function () {
-  console.log(`Xe ${this.mauSac} chạy.`);
+  console.log(`${this.ten} đang chạy...`);
 };
+
+let xe1 = new XeHoi("Toyota");
+let xe2 = new XeHoi("Honda");
+
+xe1.chay(); // → Toyota đang chạy...
+xe2.chay(); // → Honda đang chạy...
+
+// Kiểm tra nguyên mẫu
+console.log(Object.getPrototypeOf(xe1) === XeHoi.prototype); // true
 ```
 
 ### 11.3. Bảng so sánh class vs prototype
@@ -654,24 +683,6 @@ Kiểm tra instance thuộc lớp nào.
 class HocSinh {}
 let hs = new HocSinh();
 console.log(hs instanceof HocSinh); // true
-```
-
-### 12.4. Mixins (kết hợp lớp)
-
-Kết hợp nhiều lớp (không chính thống, dùng Object.assign).
-
-```javascript
-let mixin = {
-  bay() {
-    console.log("Bay!");
-  },
-};
-class Chim {
-  constructor() {}
-}
-Object.assign(Chim.prototype, mixin);
-let chim = new Chim();
-chim.bay(); // In: Bay!
 ```
 
 ---

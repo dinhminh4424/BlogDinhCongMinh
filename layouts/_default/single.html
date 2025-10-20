@@ -43,7 +43,7 @@
               {{ partial "toc.html" . }}
             {{ end }}
             {{ if $showRelated }}
-              sd
+              
             {{ end }}
           </div>
         </div>
@@ -54,6 +54,7 @@
         {{ partial "series/series.html" . }}
         <div class="article-content max-w-6xl mb-20">
           {{ .Content }}
+          
           {{ $defaultReplyByEmail := site.Params.replyByEmail }}
           {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
           {{ if $replyByEmail }}

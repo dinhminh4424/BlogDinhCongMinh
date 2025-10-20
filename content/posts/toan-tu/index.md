@@ -14,37 +14,18 @@ featuredImage: "images/anh-nen_toantu.jpg"
 
 ### 1.1 Toán tử là gì?
 
-Toán tử trong ngôn ngữ lập trình là các ký hiệu (đôi khi cũng là tên)
-được sử dụng để thực hiện các hành động nhất định trên **các đối
-số** được gọi là **toán hạng** .
+### Toán tử trong JavaScript
 
-Toán hạng có thể là cả giá trị và biến. Chúng ta đã gặp toán tử nhiều
-lần trong các ví dụ trước, ví dụ, ký hiệu gán `=` hoặc từ khóa loại của.
+Toán tử là ký hiệu hoặc từ khóa thực hiện hành động trên toán hạng (giá trị hoặc biến).
+Ví dụ: `=` là toán tử gán, typeof kiểm tra kiểu.
 
-Toán tử có thể được phân loại theo nhiều cách. Ví dụ, chúng được phân
-biệt theo số lượng toán hạng mà chúng xử lý.
+#### Phân loại:
 
-Toán tử cộng `+` là một **toán tử nhị phân điển** hình (nó sử dụng hai toán
-hạng), trong khiloại củatoán tử là **toán tử đơn ngôi** (chỉ sử dụng một
-toán hạng).
+**Theo số lượng toán hạng:** Đơn ngôi (`!a`), Nhị phân (`a + b`), Ba ngôi (`condition ? a : b`).
+**Theo vị trí:** Tiền tố (`++a`), Hậu tố (`a++`), Trung tố (`a + b`).
+**Theo chức năng:** Gán (`=`), Số học (`+`, `-`), Logic (`&&`, `||`), So sánh (`==`, `===`), Điều kiện (`?:`).
 
-Trong JavaScript, cũng có một **toán tử ba ngôi** (hoạt động trên ba
-toán hạng), chúng ta sẽ nói sơ qua về toán tử này sau.
-
-Chúng ta có thể phân biệt giữa **toán tử tiền tố** (xảy ra trước toán
-hạng), **toán tử hậu tố** (sau toán hạng) và **toán tử trung tố** (giữa
-các toán hạng). Tuy nhiên, việc phân loại toán tử theo ngữ cảnh sử dụng
-là phổ biến: ví dụ, chúng ta có **toán tử gán; toán tử số học; toán tử
-logic;** hoặc **toán tử điều kiện** . Chúng ta sẽ xem xét thêm các toán
-tử JavaScript cơ bản theo cách phân loại này.
-
-Cùng một ký hiệu có thể được hiểu là một toán tử khác nhau tùy thuộc vào
-ngữ cảnh, tức là thường là tùy thuộc vào loại toán hạng. Trong
-JavaScript,+symbol là một ví dụ. Nếu toán hạng là số, việc sử dụng toán
-tử này sẽ khiến trình thông dịch tính tổng của chúng (đây là toán tử
-cộng, được phân loại là số học). Tuy nhiên, nếu toán hạng là chuỗi, cùng
-một symbol sẽ được coi là toán tử nối, và trình thông dịch sẽ cố gắng
-nối cả hai chuỗi ký tự.
+Lưu ý: Ký hiệu như + có thể là phép cộng số hoặc nối chuỗi tùy ngữ cảnh.
 
 ### 1.2 Toán tử gán
 
@@ -82,21 +63,15 @@ các loại toán tử khác.
 
 ### 1.3 Toán tử số học
 
-Toán tử số học biểu thị các phép toán và chúng chấp nhận các giá trị số
-và biến. Tất cả các toán tử số học, **ngoại trừ phép cộng**, sẽ cố gắng ngầm
-chuyển đổi các giá trị sang kiểu Số trước khi thực hiện phép toán.
+Toán tử số học dùng để thực hiện các phép tính trên giá trị số hoặc biến.  
+Ngoại trừ phép **cộng (`+`)**, tất cả các toán tử khác sẽ **tự chuyển đổi toán hạng sang kiểu Number** trước khi tính.
 
-Toán tử cộng sẽ chuyển đổi mọi thứ thành String nếu bất kỳ toán hạng nào
-có kiểu **String**, nếu không, nó sẽ chuyển đổi chúng thành **Number** giống như
-các toán tử số học còn lại. Thứ tự các phép toán được tôn trọng trong
-JavaScript giống như trong toán học, và chúng ta có thể sử dụng dấu
-ngoặc đơn như trong toán học để thay đổi thứ tự phép toán nếu cần.
+Riêng `+` sẽ:
 
-Nhìn chung, việc sử dụng dấu ngoặc đơn để xác định thứ tự ưu tiên và thứ
-tự thực hiện các phép toán là một thói quen tốt, không chỉ riêng phép
-tính số học. Thứ tự ưu tiên của các phép toán do trình thông dịch thực
-hiện sẽ không phải lúc nào cũng trực quan như thứ tự ưu tiên của các
-phép tính số học được biết đến trong toán học.
+- Nếu **một trong hai toán hạng là chuỗi (`String`)** → nối chuỗi.
+- Nếu **đều là số** → thực hiện phép cộng số học.
+
+> **Thứ tự ưu tiên** trong JavaScript giống toán học, nên dùng **ngoặc đơn** để đảm bảo rõ ràng.
 
 ```javascript
 console.log(2 + 2 * 2); // -> 6
@@ -772,132 +747,3 @@ let name = 1 > 2 ? "Alice" : "Bob";
 
 console.log(name); // -> Bob
 ```
-
-### 2.4 Quyền ưu tiên
-
-Hầu như trong tất cả các ví dụ trình bày thao tác của các toán tử liên
-tiếp, chúng ta đều làm theo các hướng dẫn sử dụng một toán tử. Trên thực
-tế, thường thì nhiều toán tử được sử dụng đồng thời. Đến đây, một câu
-hỏi khá quan trọng được đặt ra: trình thông dịch sẽ thực hiện chúng theo
-thứ tự nào? Điều này tất nhiên sẽ ảnh hưởng đến kết quả cuối cùng của
-các toán tử, vì vậy cần lưu ý điều này khi viết hướng dẫn.
-
-```javascript
-let a = 10;
-
-let b = a + 2 \* 3;
-
-let c = a + 2 < 20 - 15;
-
-console.log(a); // -> 10
-
-console.log(b); // -> 16
-
-console.log(c); // -> false
-
-```
-
-Ở dòng thứ hai của ví dụ (khai báo biến b), các toán tử được thực hiện
-theo thứ tự toán học. Đầu tiên, phép nhân được thực hiện, sau đó là phép
-cộng, và cuối cùng, giá trị kết quả được gán cho biến. Ở dòng thứ ba
-(khai báo biến c), vấn đề trở nên phức tạp hơn một chút. Đầu tiên, tổng
-của biến a và số 2 được tính, sau đó là tổng của số 20 và 15, và cả hai
-kết quả được so sánh với toán tử logic (nhỏ hơn) và kết quả được đặt vào
-biến c.
-
-Trình thông dịch JavaScript sử dụng hai thuộc tính toán tử để xác định
-trình tự các phép toán: độ ưu tiên và tính kết hợp. Độ ưu tiên có thể
-được coi là một mức độ ưu tiên, với một số phép toán có cùng độ ưu tiên
-(ví dụ: phép cộng và phép trừ). Tính kết hợp cho phép bạn chỉ định thứ
-tự thực thi nếu có nhiều phép toán có cùng độ ưu tiên nằm cạnh nhau.
-
-Độ ưu tiên có thể được biểu diễn dưới dạng giá trị số - giá trị càng
-cao, mức độ ưu tiên của thao tác càng cao. Ví dụ, nếu toán
-tử **_OP 1_** có độ ưu tiên nhỏ hơn **_OP 2_** , thì lệnh:
-
-\*a **OP 1\*** \*b **OP 2\*** *c*
-
-sẽ được thực hiện như sau: đầu tiên, **OP 2** sẽ được thực hiện trên các
-toán hạng *b* và *c* , sau đó **_OP 1_** sẽ được thực hiện trên toán
-hạng trái a và toán hạng phải, kết quả từ **_OP 2._** Vì vậy, lệnh có
-thể được trình bày dưới dạng:
-
-\*a **OP 1\*** ( \*b **OP 2\*** *c* )
-
-Nếu chúng ta thực hiện cùng một phép toán (hoặc các phép toán khác nhau
-nhưng có cùng độ ưu tiên), trình thông dịch sẽ sử dụng tính kết hợp để
-xác định thứ tự của các phép toán. Các toán tử có thể có tính kết hợp
-trái (thứ tự từ trái sang phải) hoặc tính kết hợp phải (thứ tự từ phải
-sang trái) được chỉ định. Giả sử trong ví dụ của chúng ta, toán tử OP1
-có tính kết hợp trái:
-
-\*a **OP 1\*** \*b **OP 2\*** *c*
-
-Trong trường hợp này, thao tác OP1 trên toán hạng a và b sẽ được thực
-hiện trước, sau đó là thao tác OP1 thứ hai trên kết quả nhận được và
-toán hạng c. Lưu ý rằng chúng ta đang xử lý kết hợp trái, chúng ta có
-thể viết lệnh theo dạng sau:
-
-( \*a **OP 1\*** *b* ) **_OP 2_** *c*
-
-Do đó, việc biết không chỉ thứ tự ưu tiên của tất cả các toán tử mà còn
-cả tính kết hợp của chúng là điều cần thiết. Điều này có vẻ hơi quá sức,
-xét đến số lượng toán tử. May mắn thay, thường thì chỉ cần biết các
-thuộc tính của những toán tử cơ bản nhất và sử dụng dấu ngoặc trong
-những tình huống khó khăn là đủ. Dấu ngoặc cho phép bạn áp đặt thứ tự
-các phép toán, giống như trong toán học. Hãy lưu ý điều này khi xem bảng
-bên dưới. Bảng này chứa danh sách các toán tử mà chúng ta đã biết cùng
-với thứ tự ưu tiên và tính kết hợp của chúng, vì vậy bảng khá lớn. Bạn
-hoàn toàn không cần phải nhớ tất cả mọi thứ nếu có thể sử dụng dấu ngoặc
-để nhóm các phép toán.
-
-Mũi tên trong cột liên kết hướng về phía bên phải có nghĩa là liên kết
-từ trái sang phải, trong khi hướng về phía đối diện có nghĩa là liên kết
-từ phải sang trái.
-
-Viết tắt n/a có nghĩa là không áp dụng, vì trong một số toán tử, thuật
-ngữ kết hợp không có nghĩa.
-
-Ngay ở đầu bảng, có ba toán tử có thể cần giải thích thêm:
-
-**Nhóm** chỉ đơn giản là sử dụng dấu ngoặc. Chúng được ưu tiên hơn các
-toán tử khác, vì vậy chúng ta có thể sử dụng chúng để buộc việc thực thi
-các phép toán được ưu tiên;
-
-**Truy cập trường (truy cập thành viên)** là toán tử được sử dụng trong
-ký hiệu dấu chấm, dùng để truy cập một trường đối tượng được chọn. Nó
-được ưu tiên hơn các toán tử khác (trừ dấu ngoặc vuông), ví dụ như lệnh:
-
-hãy để x = myObject.test + 10;có nghĩa là giá trị của trường kiểm tra
-của đối tượng myObject sẽ được lấy trước, sau đó chúng ta sẽ thêm giá
-trị 10 vào trường đó và kết quả sẽ được chuyển đến biến x;
-
-**Thứ tự ưu tiên gọi hàm** cho chúng ta biết rằng nếu chúng ta gọi một
-hàm, hành động này sẽ được ưu tiên hơn các thao tác khác, ngoại trừ việc
-nhóm trong ngoặc vuông và toán tử truy cập trường (dấu chấm). Vì vậy,
-trong ví dụ:
-
-cho `y = 10 + myFunction() ** 2`; myFunction sẽ được gọi đầu tiên, kết
-quả trả về của nó sẽ được nâng lên lũy thừa 2 và chỉ sau đó chúng ta mới
-thêm 10 vào tổng và lưu kết quả vào biến y.
-
-Tuy nhiên, hãy nhớ rằng nếu bạn có bất kỳ thắc mắc nào, chỉ cần sử dụng
-dấu ngoặc để sắp xếp thứ tự ưu tiên của các toán tử được sử dụng. Chúng
-cho phép bạn sắp xếp ngay cả những lệnh khó hiểu nhất hiện lên trong
-đầu.
-
-```javascript
-let a, b;
-
-b = (a = (20 + 20) * 2) > 3 ** 2;
-
-console.log(a); // -> 60
-console.log(b); // -> true
-```
-
-Việc sử dụng dấu ngoặc đơn không chỉ buộc phải tuân theo thứ tự các hành
-động mà còn làm tăng khả năng đọc mã (người đọc mã không cần phải thắc
-mắc mã đó sẽ được thực hiện như thế nào và theo thứ tự nào).
-
-Danh sách đầy đủ các toán tử và thuộc tính có thể được tìm thấy
-trên **các trang MDN** .

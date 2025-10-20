@@ -12,8 +12,6 @@ showTableOfContents: true
 featuredImage: "images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg" # ảnh bài viết chi tiết
 ---
 
-# Kiểu Dữ Liệu trong JavaScript
-
 ## A. Kiểu Dữ Liệu
 
 ![Ảnh 1](images/cac-kieu-du-lieu-trong-js-thuong-gap.jpg)

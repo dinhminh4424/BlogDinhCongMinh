@@ -8,8 +8,6 @@ showTableOfContents: true
 featuredImage: "images/anh-nen_ham.png"
 ---
 
-# Hàm trong JavaScript
-
 ![Ảnh 1](images/anh-nen_ham.png)
 
 ## Mục lục
